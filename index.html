@@ -1,1 +1,47 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b1020"><title>Exa — From attention to information</title><meta name="description" content="A visual story about Exa, search for AI, and the journey from a busy web to useful evidence."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="story.css?v=df8bd4ccfa59"></head><body><div class="app"><header class="toolbar"><a class="brand" href="#0" aria-label="Presentation home">exa<span>.</span></a><span class="deck-name">From attention to information</span><div class="tools"><span id="timer">00:00</span><button id="timerBtn" title="Start or pause timer">Start</button><button id="timerReset" aria-label="Reset timer">↺</button><button id="overviewBtn" title="Overview (O)">▦ <span>Overview</span></button><button id="notesBtn" aria-pressed="false" title="Speaker notes (N)">≡ <span>Notes</span></button><button id="motionBtn" aria-pressed="false" title="Reduced motion">◌ <span>Motion</span></button><button id="helpBtn" aria-label="Keyboard help">?</button><button id="presentBtn" class="present" title="Fullscreen (F)">⛶ <span>Present</span></button></div></header><main class="stage-wrap"><div id="stage" class="stage" aria-label="Presentation slides"></div></main><footer class="bottom-bar"><button id="prev" aria-label="Previous slide">←</button><button id="next" aria-label="Next slide">→</button><span id="counter"></span><div class="progress-track"><div id="progress"></div></div><button id="replayBtn" title="Replay scene (R)">↻ Replay scene</button><span class="key-hint">← → NAVIGATE</span></footer></div><div id="modal" hidden></div><div id="toast" hidden></div><script src="story.js?v=6b94d4b568dd"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f6f6f2">
+  <title>Exa — From attention to information</title>
+  <meta name="description" content="A 30-slide visual story about Exa: web search and retrieval built for AI applications.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="story.css?v=768720dc03e0">
+  <link rel="stylesheet" href="scenes.css?v=870674f42675">
+</head>
+<body>
+  <div class="app">
+    <header class="toolbar">
+      <a class="brand" href="#0" aria-label="Presentation home">exa<span>.</span></a>
+      <span class="deck-name">From attention to information</span>
+      <div class="tools">
+        <div class="timer-group"><output id="timer" aria-label="Presentation timer">00:00</output><button id="timerBtn" aria-label="Start timer">Start</button><button id="timerReset" aria-label="Reset timer" title="Reset timer">↺</button></div>
+        <button id="overviewBtn" aria-label="Slide overview" title="Overview (O)">▦ <span>Overview</span></button>
+        <button id="notesBtn" aria-pressed="false" aria-label="Speaker notes" title="Speaker notes (N)">≡ <span>Notes</span></button>
+        <button id="motionBtn" aria-pressed="false" aria-label="Reduced motion" title="Reduced motion">◌ <span>Motion</span></button>
+        <button id="helpBtn" aria-label="Keyboard help" title="Keyboard help (?)">?</button>
+        <button id="presentBtn" aria-label="Fullscreen presentation" title="Fullscreen (F)">⛶ <span>Present</span></button>
+      </div>
+    </header>
+    <main class="stage-wrap">
+      <div id="stage" class="stage" aria-label="Presentation slides"></div>
+      <aside id="notes" class="notes-panel" aria-label="Speaker notes" hidden></aside>
+    </main>
+    <footer class="bottom-bar">
+      <div class="navigation"><button id="prev" aria-label="Previous slide">←</button><span id="counter"></span><button id="next" aria-label="Next slide">→</button></div>
+      <div class="progress-track" aria-hidden="true"><div id="progress"></div></div>
+      <div class="scene-controls"><span id="sceneState">Scene ready</span><button id="pauseBtn" aria-label="Pause scene" title="Pause or resume scene (P)">Ⅱ <span>Pause</span></button><button id="replayBtn" aria-label="Replay scene" title="Replay scene (R)">↻ <span>Replay</span></button></div>
+      <span class="key-hint">← → TO EXPLORE</span>
+    </footer>
+  </div>
+  <div id="modal" hidden></div>
+  <div id="toast" role="status" hidden></div>
+  <div id="announcement" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+  <script src="slides.js?v=fc14cbf585b5"></script>
+  <script src="scenes.js?v=dc29e0704889"></script>
+  <script src="story.js?v=40ea6f9966d1"></script>
+</body>
+</html>
