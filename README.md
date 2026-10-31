@@ -1,12 +1,12 @@
-# Exa — One question. Two paths. One agent.
+# Exa — From attention to information
 
-An animated, 25-scene presentation comparing a consumer browsing route with Exa's retrieval interface for AI applications. One persistent workbench carries the same illustrative question, source documents, passages, and agent throughout.
+An animated, 25-slide presentation explaining Exa and web retrieval for AI agents.
 
 ## Present
 
 Open https://ahmedzaky01.github.io/exa-presentation/
 
-Use the arrow keys to navigate, P to pause or resume a scene, R to replay, O for the overview, and N for speaker notes. Each scene plays for seven seconds and holds its final state. Reduced motion is available in the toolbar.
+Use the arrow keys to navigate, R to replay a scene, O for the overview, and N for speaker notes. Reduced motion is available in the toolbar.
 
 ## Publish updates
 
