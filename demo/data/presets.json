@@ -1,356 +1,315 @@
 {
   "aws-leads": {
     "id": "aws-leads",
-    "title": "AWS Migration Leads for Datadog",
-    "badge": "⚡ Sales Prospecting",
-    "query": "Companies announcing migration or infrastructure launch on AWS Kubernetes in 2025 2026 seeking modern observability",
-    "subtitle": "Identify fast-growing tech companies actively migrating core infrastructure to AWS EKS who need enterprise APM and monitoring.",
+    "title": "AWS Migration Sales Leads",
+    "badge": "🎯 Datadog Prospecting",
+    "query": "Tech companies recently migrating Kubernetes infrastructure to AWS",
+    "objective": "Scan the public web for high-growth tech companies migrating core infrastructure to AWS EKS to generate warm, qualified enterprise sales leads for Datadog APM.",
     "legacy": {
       "latency": 3840,
       "tokens": 48250,
       "costPer100k": 14475,
       "noiseRatio": 94,
       "signalRatio": 6,
-      "adsCount": 3,
+      "adsCount": 2,
       "results": [
         {
           "type": "ad",
           "title": "Ad · CloudZero - Optimize AWS Kubernetes Cloud Cost",
           "url": "https://www.google.com/aclk?sa=l&ai=DChcSEwj...",
-          "snippet": "Cut your AWS cloud spend by 35%. Request a demo today. Certified AWS Advanced Tier Services Partner. $14/click keyword auction.",
-          "badge": "Sponsored Ad · $14 CPC",
+          "snippet": "Cut your AWS cloud spend by 35%. Request a demo today. Certified AWS Advanced Tier Services Partner. $14.20/click paid bidding auction.",
+          "badge": "Sponsored Ad · $14.20 CPC",
           "tokens": 840
         },
         {
-          "type": "ad",
-          "title": "Ad · Accenture Cloud First - Enterprise AWS Cloud Transformation",
-          "url": "https://www.google.com/aclk?sa=l&ai=DChcSEwj2...",
-          "snippet": "Accelerate your migration to AWS with enterprise cloud experts. Contact our global cloud team for tailored migration blueprints.",
-          "badge": "Sponsored Ad · B2B Placement",
-          "tokens": 920
+          "type": "outdated",
+          "title": "Atlassian moved its entire infrastructure to AWS for cloud-native customers",
+          "url": "https://www.ciodive.com/news/atlassian-moved-its-entire-infrastructure-to-aws/519510/",
+          "snippet": "Since December 2017, Atlassian has run completely on Amazon Web Services because of existing microservices... (Article published 9 years ago).",
+          "badge": "Outdated · Published Dec 2017 (9 Yrs Old)",
+          "tokens": 15400
+        },
+        {
+          "type": "wrong",
+          "title": "Migrating Kubernetes to NeevCloud FROM AWS Infrastructure",
+          "url": "https://www.linkedin.com/posts/black-potato-systems_why-we-migrated-our-kubernetes-infrastructure",
+          "snippet": "Why our engineering team migrated our Kubernetes cluster away from AWS to NeevCloud. (Exact opposite of the user prompt intent).",
+          "badge": "Opposite Match · Migrated Away from AWS",
+          "tokens": 11200
         },
         {
           "type": "seo",
-          "title": "Top 10 AWS Kubernetes Monitoring Tools of 2024 (Review & Pricing)",
-          "url": "https://www.devops-affiliate-review.com/best-aws-k8s-tools-2024/",
-          "snippet": "Comparing Prometheus, Grafana, Datadog, Dynatrace... By clicking Accept All, you consent to our use of tracking cookies and affiliate links.",
-          "badge": "SEO Affiliate Farm · 40KB Boilerplate",
-          "tokens": 14200
+          "title": "Category: Amazon Elastic Kubernetes Service Blogs",
+          "url": "https://aws.amazon.com/blogs/migration-and-modernization/category/compute/amazon-kubernetes-service/",
+          "snippet": "Introducing TechShift, the AWS series dedicated to software businesses looking to modernize. Sign up for our monthly AWS newsletter...",
+          "badge": "Generic Category Page · 40KB Boilerplate",
+          "tokens": 12800
         },
         {
-          "type": "outdated",
-          "title": "AWS Case Studies: How Netflix built cloud resilience on AWS (2018)",
-          "url": "https://aws.amazon.com/solutions/case-studies/netflix-cloud-resilience/",
-          "snippet": "Read the story of Netflix's multi-region cloud deployment. Monolithic architecture transformed into microservices on AWS EC2.",
-          "badge": "Outdated · 8 Years Old",
-          "tokens": 16400
-        },
-        {
-          "type": "forum",
-          "title": "Reddit r/aws - Anyone else struggling with EKS log ingestion costs?",
-          "url": "https://www.reddit.com/r/aws/comments/xyz123/eks_log_costs/",
-          "snippet": "154 comments · 2 years ago · We are running 40 pods and our CloudWatch bill is crazy high. Looking for alternative log tools.",
-          "badge": "Unstructured Forum Noise",
-          "tokens": 15890
+          "type": "redirect",
+          "title": "Redirect: https://www.google.com/goto?url=CAEShgEB6zswFRtGkWZNXN...",
+          "url": "https://www.google.com/goto?url=CAEShgEB6zswFRtGkWZNXN27quKChc0Vdh3ebfo8yw30wpTOqL6tr8kATQGTka8iLRnI5sfl5WLvYmkz0Dkq5QoYpKSL3ZIrPld9nw8lGDEEmHZCsiDp7uTd3M1MP13gcadxuvX7_LxaUYOMKC3rsaO7CyS-FddVs5B25hFve3VnXp-PPTl_pD4QxA",
+          "snippet": "Obfuscated redirect tracking token. Autonomous crawler cannot resolve destination without executing headless browser JavaScript.",
+          "badge": "Tracking Redirect · Unparseable URL",
+          "tokens": 8010
         }
       ],
-      "agentSynthesis": "⚠️ Agent Synthesis Result (Legacy Google):\n\nBased on the 48,250 tokens retrieved, several cloud consulting agencies (CloudZero, Accenture) are advertising migration services. Historical case studies mention Netflix migrated in 2018. Reddit users complain about CloudWatch bills. \n\nNo specific 2025–2026 prospective customer companies could be verified due to affiliate paywalls, sponsored auctions, and cookie disclaimers. 94% of tokens consumed were boilerplate navigation and marketing copy."
+      "agentSynthesis": {
+        "verdict": "FAILED / BLOWN CONTEXT",
+        "badge": "❌ Context Window Overflow",
+        "description": "Agent consumed 48,250 tokens across 5 scraped pages. The retrieved context contains zero recent sales leads: 1 paid ad ($14 CPC), 1 outdated article from 2017, 1 company migrating AWAY from AWS, and an obfuscated Google redirect link. The agent cannot take action without hallucinating."
+      }
     },
     "exa": {
-      "latency": 185,
+      "latency": 241,
       "tokens": 1140,
       "costPer100k": 342,
       "noiseRatio": 2,
       "signalRatio": 98,
-      "highlightsCount": 8,
       "results": [
         {
-          "title": "NaviPay Engineering: Why We Migrated Our Core Settlement Engine to Amazon EKS",
-          "url": "https://navipay.tech/blog/migrating-core-settlement-to-eks",
-          "category": "company",
-          "publishedDate": "2026-02-14",
+          "title": "Cutting AI Service Costs Using Amazon Bedrock with rabbit",
+          "url": "https://aws.amazon.com/solutions/case-studies/rabbit-migration-case-study/",
+          "category": "High-Intent Lead",
+          "publishedDate": "2024 Case Study",
+          "company": "rabbit Inc. (AI Hardware)",
           "highlights": [
-            "In Q1 2026, we completed the migration of our transaction settlement pipeline from on-prem bare metal to Amazon EKS across three AWS regions.",
-            "Our primary operational bottleneck post-migration is lack of distributed tracing across microservices, currently evaluating enterprise APM platforms like Datadog to resolve latency spikes."
+            "In 2024, technology startup rabbit launched a device powered by generative AI... rabbit decided to migrate to containerized infrastructure on Amazon Web Services (AWS) to support hypergrowth.",
+            "The companies migrated rabbit's infrastructure to Amazon Elastic Kubernetes Service (Amazon EKS) in 2 months with Caylent to maintain high performance across 100,000+ live devices."
           ],
-          "tokens": 280,
+          "tokens": 360,
           "verified": true
         },
         {
-          "title": "Klarity Health Tech Blog: Scaling Patient Data Pipelines on AWS Graviton & Kubernetes",
-          "url": "https://klarity.io/engineering/aws-kubernetes-scaling-2026",
-          "category": "company",
-          "publishedDate": "2026-01-28",
+          "title": "Momenta Migrates to Amazon EKS for Automatic Cluster Scalability and Upgrades",
+          "url": "https://aws.amazon.com/solutions/case-studies/momenta-eks/",
+          "category": "High-Intent Lead",
+          "publishedDate": "Production Migration",
+          "company": "Momenta (Autonomous Driving)",
           "highlights": [
-            "Following our $45M Series B, our infrastructure team initiated full migration to AWS EKS with Kubernetes operators.",
-            "We are currently consolidating telemetry data across 120 services; our legacy open-source Prometheus setup cannot handle the scale, creating an urgent need for an enterprise observability partner."
+            "Momenta uses machine learning to create the 'brain' for autonomous driving. Facing scaling and cost challenges on self-managed Kubernetes, Momenta migrated its Kubernetes clusters to Amazon EKS.",
+            "By taking advantage of Amazon EKS, Momenta completed the entire migration from self-managed Kubernetes cluster to AWS in less than two months."
           ],
-          "tokens": 295,
+          "tokens": 390,
           "verified": true
         },
         {
-          "title": "LogixAI Infrastructure Update: Expanding Our Real-Time Prediction Cluster on AWS",
-          "url": "https://logix.ai/news/expanding-aws-infrastructure-2026",
-          "category": "company",
-          "publishedDate": "2026-03-02",
+          "title": "Remine cuts cloud costs significantly and migrates to EKS - Spectro Cloud",
+          "url": "https://www.spectrocloud.com/customers/remine",
+          "category": "High-Intent Lead",
+          "publishedDate": "Verified Lead",
+          "company": "Remine (Real Estate AI)",
           "highlights": [
-            "LogixAI has transitioned our real-time ML inference architecture to AWS EKS and AWS Inferentia2 to support 10x query volumes.",
-            "Maintaining 99.99% uptime requires granular Kubernetes container monitoring and proactive anomaly alerting, which our engineering team is actively sourcing this month."
+            "Rodney Cobb, Remine's Director of Platform Engineering, decided that a migration from EC2 to AWS's managed K8s offering, EKS, would ease the burden on platform engineering and cut cloud costs by 30%.",
+            "Palette helped speed Remine's EC2 to EKS migration timeframe by 5x, allowing Cobb's team to model their Kubernetes stack and scale resources in EKS with zero downtime."
           ],
-          "tokens": 275,
-          "verified": true
-        },
-        {
-          "title": "Veloce Commerce: Architectural Evolution - From Monolith to AWS Cloud Native",
-          "url": "https://veloce.commerce/tech/cloud-native-aws-journey",
-          "category": "company",
-          "publishedDate": "2026-02-20",
-          "highlights": [
-            "We went live with our new AWS cloud-native architecture last week, decommissioning our legacy datacenter servers.",
-            "Observability is our top priority for Q2 to track checkout latency and database bottlenecks across our new EKS microservices cluster."
-          ],
-          "tokens": 290,
+          "tokens": 390,
           "verified": true
         }
       ],
-      "agentSynthesis": "⚡ Verified Agent Synthesis Result (Exa Neural):\n\nGenerated 4 qualified enterprise sales leads with direct infrastructure migration signals and active observability requirements:\n\n1. NaviPay (Fintech / Payments) [1]\n   • Trigger: Migrated core settlement engine to Amazon EKS across 3 AWS regions in Q1 2026.\n   • Need: VP of Infra evaluating Datadog APM to eliminate distributed microservice latency spikes.\n\n2. Klarity Health ($45M Series B HealthTech) [2]\n   • Trigger: Scaling to 120 microservices on AWS Graviton + EKS.\n   • Need: Open-source Prometheus failing under load; actively sourcing enterprise observability partner.\n\n3. LogixAI (Enterprise ML Inference) [3]\n   • Trigger: Upgrading real-time prediction cluster to AWS Inferentia2 & EKS.\n   • Need: Sourcing Kubernetes container monitoring and proactive anomaly alerting this month.\n\n4. Veloce Commerce (Omnichannel Retail) [4]\n   • Trigger: Decommissioned on-prem datacenter; launched cloud-native EKS last week.\n   • Need: Observability is #1 priority for Q2 to protect checkout latency.\n\nCitations: [1] navipay.tech [2] klarity.io [3] logix.ai [4] veloce.commerce (100% auditable URLs)."
+      "agentSynthesis": {
+        "verdict": "AUTOMATED ACTION COMPLETE",
+        "badge": "✓ 3 Verified Enterprise Leads Generated",
+        "description": "Agent ingested 1,140 tokens in 241ms and extracted 3 verified migration accounts: 1) rabbit (AI Hardware, 100k+ devices, Caylent partner), 2) Momenta (Autonomous Driving, EKS cluster migration), 3) Remine (Director of Platform Eng Rodney Cobb, 30% cost target). Generated personalized outreach draft with 100% verified citations."
+      }
     }
   },
-
   "competitor-intel": {
     "id": "competitor-intel",
     "title": "Datadog vs Splunk & Dynatrace",
-    "badge": "⚔️ Competitive Intelligence",
-    "query": "Enterprise engineering teams discussing reasons for switching or migrating away from Splunk or Dynatrace pricing model",
-    "subtitle": "Uncover authentic engineering friction points, pricing fatigue, and migration triggers from Splunk and Dynatrace deployments.",
-    "legacy": {
-      "latency": 3940,
-      "tokens": 49120,
-      "costPer100k": 14736,
-      "noiseRatio": 96,
-      "signalRatio": 4,
-      "adsCount": 2,
-      "results": [
-        {
-          "type": "ad",
-          "title": "Ad · Dynatrace® Official Site - Automated Cloud Observability",
-          "url": "https://www.google.com/aclk?sa=l&ai=DChcSEwjd...",
-          "snippet": "Defensive competitor keyword ad. Start your free trial today. Full-stack observability powered by Davis AI.",
-          "badge": "Sponsored Defensive Bid",
-          "tokens": 780
-        },
-        {
-          "type": "ad",
-          "title": "Ad · Splunk Cloud Platform - Real-time Visibility at Scale",
-          "url": "https://www.google.com/aclk?sa=l&ai=DChcSEwjs...",
-          "snippet": "Turn data into doing with Splunk Cloud. Request enterprise pricing. High-volume data analytics for security and IT.",
-          "badge": "Sponsored Ad · Keyword Target",
-          "tokens": 840
-        },
-        {
-          "type": "seo",
-          "title": "Datadog vs Dynatrace vs Splunk: 2026 Software Reviews & Comparison | G2",
-          "url": "https://www.g2.com/compare/datadog-vs-dynatrace-vs-splunk",
-          "snippet": "Read 4,800+ user reviews, feature matrices, and buyer guides. Popups, newsletter prompt, cookie tracking banner.",
-          "badge": "G2 Aggregator · 42KB Boilerplate",
-          "tokens": 16400
-        },
-        {
-          "type": "seo",
-          "title": "Splunk Pricing Explained: Ingest vs Workload Pricing (Affiliate Guide)",
-          "url": "https://www.cloud-cost-insider.com/splunk-pricing-breakdown-2024/",
-          "snippet": "Understanding GB/day ingestion tiers and hidden fees. Subscribe for free PDF cheatsheet. Cookie consent required.",
-          "badge": "Affiliate Blog · 35KB DOM",
-          "tokens": 15800
-        },
-        {
-          "type": "outdated",
-          "title": "StackOverflow / ServerFault: How to tune Splunk forwarder memory limits (2019)",
-          "url": "https://serverfault.com/questions/987123/splunk-forwarder-memory/",
-          "snippet": "Technical configuration thread from 7 years ago about forwarder buffer sizes. No pricing or migration context.",
-          "badge": "Outdated ServerFault Thread",
-          "tokens": 15300
-        }
-      ],
-      "agentSynthesis": "⚠️ Agent Synthesis Result (Legacy Google):\n\nRetrieved 49,120 tokens containing G2 feature comparisons, vendor marketing landing pages, and a 2019 technical thread on Splunk buffer sizes.\n\nG2 rates all three platforms between 4.2 and 4.5 stars. Dynatrace and Splunk both bid on competitor queries. Zero actual engineering migration quotes were surfaced because review aggregators gate specific customer feedback behind gated signups."
-    },
-    "exa": {
-      "latency": 178,
-      "tokens": 1080,
-      "costPer100k": 324,
-      "noiseRatio": 1,
-      "signalRatio": 99,
-      "highlightsCount": 6,
-      "results": [
-        {
-          "title": "Postmortem on Our Observability Budget: Why We Left Splunk for Datadog",
-          "url": "https://scaleops.substack.com/p/observability-budget-splunk-to-datadog",
-          "category": "company",
-          "publishedDate": "2026-01-15",
-          "highlights": [
-            "Splunk's GB/day ingest pricing created an adversarial dynamic between our developers and finance, where engineers were penalized for writing debug logs during incident response.",
-            "By migrating our log analytics and APM to Datadog with indexed retention tiers, we slashed annual observability costs by 42% while retaining full trace fidelity."
-          ],
-          "tokens": 285,
-          "verified": true
-        },
-        {
-          "title": "Fintech Engineering Architecture: Replacing Dynatrace with OpenTelemetry & Datadog",
-          "url": "https://fintech-eng.com/posts/dynatrace-to-datadog-migration",
-          "category": "company",
-          "publishedDate": "2026-02-18",
-          "highlights": [
-            "Dynatrace's proprietary OneAgent host-unit licensing became untenable as we transitioned to ephemeral AWS Fargate containers with hundreds of short-lived tasks.",
-            "We needed unified single-pane visibility across logs, metrics, and APM without paying per-host fees on containers that spin up for 5 minutes."
-          ],
-          "tokens": 270,
-          "verified": true
-        },
-        {
-          "title": "Scaling to 50 Million Daily API Calls: Lessons Learned in Observability Consolidation",
-          "url": "https://infra-insights.io/blog/consolidating-observability-stack",
-          "category": "company",
-          "publishedDate": "2026-03-01",
-          "highlights": [
-            "Our Splunk licensing quote jumped 65% due to security log ingestion spikes, forcing an executive review of our telemetry architecture.",
-            "We initiated an evaluation of Datadog Cloud SIEM and Log Management to consolidate our security and infrastructure telemetry into one platform, eliminating cross-tool context switching."
-          ],
-          "tokens": 265,
-          "verified": true
-        },
-        {
-          "title": "Modern Cloud Observability Survey: Enterprise Migration Triggers in 2026",
-          "url": "https://cloud-native-today.com/reports/2026-observability-migration-trends",
-          "category": "company",
-          "publishedDate": "2026-02-28",
-          "highlights": [
-            "71% of enterprise teams migrating away from legacy APM cite container-unfriendly pricing models and disconnected log silos as their primary drivers.",
-            "Datadog emerged as the primary consolidation target for teams retiring separate tools for APM, logs, and infrastructure monitoring."
-          ],
-          "tokens": 260,
-          "verified": true
-        }
-      ],
-      "agentSynthesis": "⚡ Verified Agent Synthesis Result (Exa Neural):\n\nIdentified 3 core customer friction triggers driving migrations away from Splunk and Dynatrace to Datadog:\n\n1. Splunk Ingest Penalty [1]:\n   • Pain Point: GB/day ingest pricing creates developer friction; teams throttle logs to avoid bill shock.\n   • Datadog Advantage: Flex Logs & indexed retention allowed teams to cut observability spend by 42%.\n\n2. Dynatrace Host-Unit Bottleneck in Serverless [2]:\n   • Pain Point: OneAgent host-unit licensing breaks down in ephemeral AWS Fargate and container environments.\n   • Datadog Advantage: Native container tagging and per-container economics without host penalties.\n\n3. Security & Ops Tool Consolidation [3]:\n   • Pain Point: 65% annual renewal price spikes for separate security log tools.\n   • Datadog Advantage: Datadog Cloud SIEM unifies infra monitoring and security telemetry in a single pane.\n\nCitations: [1] scaleops.substack.com [2] fintech-eng.com [3] infra-insights.io [4] cloud-native-today.com (100% auditable URLs)."
-    }
-  },
-
-  "webset-soc2": {
-    "id": "webset-soc2",
-    "title": "SOC2 AI Agent Startups Webset",
-    "badge": "🏢 Webset Entity Extraction",
-    "query": "Autonomous enterprise AI agent platforms with verified SOC2 compliance and active production customer deployments",
-    "subtitle": "Demonstrate Exa Websets: asynchronous entity discovery that builds a structured, verified database of companies with compliance proof.",
+    "badge": "⚔️ Competitive Intel",
+    "query": "Why enterprise DevOps teams switch from Splunk to Datadog",
+    "objective": "Extract exact engineering postmortems and executive quotes detailing why DevOps teams replaced Splunk with Datadog for log management and observability.",
     "legacy": {
       "latency": 4120,
-      "tokens": 51200,
-      "costPer100k": 15360,
+      "tokens": 52100,
+      "costPer100k": 15630,
       "noiseRatio": 95,
       "signalRatio": 5,
       "adsCount": 2,
       "results": [
         {
           "type": "ad",
-          "title": "Ad · Vanta - Automated SOC2 Compliance in Weeks",
-          "url": "https://www.google.com/aclk?sa=l&ai=DChcSEwjv...",
-          "snippet": "Automate compliance for SOC 2, ISO 27001, HIPAA, and GDPR. Request pricing. $12/click keyword placement.",
-          "badge": "Sponsored Ad · Compliance Tool",
+          "title": "Ad · Dynatrace vs Splunk vs Datadog Enterprise APM Review",
+          "url": "https://www.google.com/aclk?sa=l&ai=DChcSEwj7...",
+          "snippet": "Compare leading observability platforms. Download the 2024 Gartner Magic Quadrant. $18.50 paid bidding auction.",
+          "badge": "Sponsored Ad · $18.50 CPC",
+          "tokens": 890
+        },
+        {
+          "type": "seo",
+          "title": "Datadog vs Splunk: 2024 Comprehensive Comparison (Pros & Cons)",
+          "url": "https://www.techtarget.com/searchitoperations/tip/Datadog-vs-Splunk/",
+          "snippet": "Both Datadog and Splunk are popular enterprise monitoring solutions. In this article we evaluate key features, pricing tiers, and licensing models...",
+          "badge": "SEO Affiliate Guide · 38KB HTML Fluff",
+          "tokens": 16400
+        },
+        {
+          "type": "seo",
+          "title": "15 Best Observability Platforms of 2023 - Software Advice",
+          "url": "https://www.softwareadvice.com/observability-tools-comparison/",
+          "snippet": "Disclosure: We may receive compensation from companies whose products we review. Click 'Accept Cookies' to view full comparison tables...",
+          "badge": "Affiliate Monetization Wall",
+          "tokens": 18200
+        },
+        {
+          "type": "forum",
+          "title": "Reddit r/devops: Splunk renewal came in at $420k/yr, what are alternatives?",
+          "url": "https://www.reddit.com/r/devops/comments/splunk_renewal_insane/",
+          "snippet": "84 comments · Our sales rep won't budge on ingest pricing. Looking at Grafana Loki or maybe Datadog. Any real-world migration experiences?",
+          "badge": "Unstructured Forum Rants",
+          "tokens": 16610
+        }
+      ],
+      "agentSynthesis": {
+        "verdict": "LOW SIGNAL / GENERIC SUMMARY",
+        "badge": "⚠️ High Noise & Boilerplate",
+        "description": "Agent spent 52,100 tokens reading affiliate reviews, cookie consent prompts, and Reddit threads. Could only output generic marketing bullet points ('both tools are good for logs'). Zero verified enterprise metrics or customer engineering names extracted."
+      }
+    },
+    "exa": {
+      "latency": 239,
+      "tokens": 1050,
+      "costPer100k": 315,
+      "noiseRatio": 1,
+      "signalRatio": 99,
+      "results": [
+        {
+          "title": "Contentful Replaces Splunk with Datadog for 9 TB/Day Log Telemetry",
+          "url": "https://www.datadoghq.com/case-studies/contentful/",
+          "category": "Verified Customer Intel",
+          "publishedDate": "Verified Case Study",
+          "company": "Contentful (Enterprise CMS)",
+          "highlights": [
+            "Logs lived in Splunk isolated from observability context. Michael Pearce, Senior Engineering Manager: 'People would put more logs into Splunk, leading to bloat and lengthy queries.' With contract renewal approaching, Contentful migrated logs to Datadog.",
+            "The team successfully moved over 9 TB of daily log telemetry in six weeks using Datadog Flex tier, retiring Splunk and unifying logs with metrics and traces."
+          ],
+          "tokens": 350,
+          "verified": true
+        },
+        {
+          "title": "Lululemon Infrastructure Modernization: Consolidating to Datadog",
+          "url": "https://techbullion.com/there-is-now-a-special-tool-preventing-incidents-in-your-cloud-native-infrastructure-a-description-of-datadog-from-ajay-chava/",
+          "category": "Verified Customer Intel",
+          "publishedDate": "Executive Interview",
+          "company": "Lululemon / Ajay Chava",
+          "highlights": [
+            "Ajay Chava led migration from fragmented Prometheus & Splunk setups to Datadog's unified platform for metrics, traces, and spans. Reduced operational overhead by 30% and improved incident response times by 40%.",
+            "'Datadog allowed us to bring our metrics, traces, and spans together on one platform... helped us reduce downtime and gave us better control over our costs.'"
+          ],
+          "tokens": 360,
+          "verified": true
+        },
+        {
+          "title": "Migrating from Splunk to Datadog: Benefits and Architecture | EverOps",
+          "url": "https://www.everops.com/migrating-from-splunk-to-datadog-benefits-and-challenges/",
+          "category": "Engineering Architecture",
+          "publishedDate": "Technical Analysis",
+          "company": "EverOps Cloud Advisory",
+          "highlights": [
+            "Unified view across 500+ cloud integrations, real-time analytics, and flexible usage pricing compared to Splunk's rigid index tier licensing.",
+            "Key driver: Breaking down telemetry silos where security and DevOps teams previously maintained duplicate logging stacks."
+          ],
+          "tokens": 340,
+          "verified": true
+        }
+      ],
+      "agentSynthesis": {
+        "verdict": "EXECUTIVE INTEL READY",
+        "badge": "✓ Exact ROI & Executive Quotes Extracted",
+        "description": "Agent parsed 1,050 tokens in 239ms and delivered exact executive evidence: 1) Contentful moved 9 TB/day logs from Splunk to Datadog Flex tier in 6 weeks (Michael Pearce, Sr Eng Mgr), 2) Lululemon reduced operational overhead by 30% and incident times by 40% (Ajay Chava). Instant battlecard ready for sales."
+      }
+    }
+  },
+  "webset-soc2": {
+    "id": "webset-soc2",
+    "title": "SOC-2 Enterprise AI Startups",
+    "badge": "🏢 Webset Entity Extraction",
+    "query": "Enterprise AI agent startups with SOC2 Type II compliance trust center",
+    "objective": "Leverage Exa Websets and semantic entity extraction to compile a clean, audited directory of B2B AI agent companies with verified SOC 2 Type II trust portals.",
+    "legacy": {
+      "latency": 3950,
+      "tokens": 46800,
+      "costPer100k": 14040,
+      "noiseRatio": 96,
+      "signalRatio": 4,
+      "adsCount": 2,
+      "results": [
+        {
+          "type": "ad",
+          "title": "Ad · Vanta - Automated SOC 2 Compliance in Weeks",
+          "url": "https://www.google.com/aclk?sa=l&ai=DChcSEwj8...",
+          "snippet": "Get audit-ready fast. Automate 90% of your evidence collection for SOC 2, ISO 27001, and HIPAA. Book a demo today. $24.00 CPC auction.",
+          "badge": "Sponsored Ad · $24.00 CPC",
+          "tokens": 780
+        },
+        {
+          "type": "ad",
+          "title": "Ad · Secureframe - Continuous AI Compliance Platform",
+          "url": "https://www.google.com/aclk?sa=l&ai=DChcSEwj9...",
+          "snippet": "Fastest way to achieve enterprise SOC 2 compliance. Trusted by 2,000+ fast-growing startups. Free compliance checklist download.",
+          "badge": "Sponsored Ad · $19.50 CPC",
           "tokens": 820
         },
         {
           "type": "seo",
-          "title": "Top 20 Generative AI Startups to Watch in 2026 (Listicle)",
-          "url": "https://www.tech-trends-daily.com/top-ai-startups-2026/",
-          "snippet": "The generative AI revolution is here. Read about AI video tools, image generators, and chatbots. Cookie wall, 14 ad banners.",
-          "badge": "Listicle Farm · 45KB DOM",
-          "tokens": 17800
+          "title": "What is SOC 2 Type II Compliance for AI Startups? (HubSpot)",
+          "url": "https://blog.hubspot.com/service/soc-2-compliance-guide",
+          "snippet": "Learn what SOC 2 compliance entails, why enterprise customers demand it, and the difference between Type I and Type II audits. 45KB marketing DOM...",
+          "badge": "Generic Educational Content",
+          "tokens": 21000
         },
         {
-          "type": "seo",
-          "title": "What is SOC 2 Compliance? Everything You Need to Know (Guide)",
-          "url": "https://www.csoonline.com/article/what-is-soc-2-compliance/",
-          "snippet": "An overview of Trust Services Criteria, Type 1 vs Type 2 reports, and auditor requirements. Newsletter popup.",
-          "badge": "Educational Generic Guide",
-          "tokens": 16400
-        },
-        {
-          "type": "forum",
-          "title": "Hacker News: Show HN: We built an AI agent to answer emails",
-          "url": "https://news.ycombinator.com/item?id=38912345",
-          "snippet": "180 comments · Discussion about prompt engineering and hallucinations. No enterprise security or compliance details.",
-          "badge": "Casual HN Discussion",
-          "tokens": 16180
+          "type": "gate",
+          "title": "2024 AI Security & Compliance Benchmark Report (Gated PDF)",
+          "url": "https://www.enterprisesecurityinsights.com/ai-benchmark-report/",
+          "snippet": "Enter your work email, company size, and phone number to unlock this 42-page whitepaper on AI startup security practices...",
+          "badge": "Lead Gate / Paywall Block",
+          "tokens": 24200
         }
       ],
-      "agentSynthesis": "⚠️ Agent Synthesis Result (Legacy Google):\n\nRetrieved 51,200 tokens consisting of Vanta compliance software ads, consumer generative AI listicles, and generic educational articles about SOC2 definitions.\n\nCould not construct a structured database of verified enterprise AI agent platforms because traditional search ranks generic educational guides over company security specifications."
+      "agentSynthesis": {
+        "verdict": "EXTRACTION IMPOSSIBLE",
+        "badge": "❌ 0 Entities Extracted",
+        "description": "Google returned compliance software vendors (Vanta, Secureframe) selling SOC 2 tools, plus educational blogs and gated lead forms. The agent could not extract a single AI agent startup with verified SOC 2 certification."
+      }
     },
     "exa": {
-      "latency": 210,
-      "tokens": 1290,
-      "costPer100k": 387,
-      "noiseRatio": 2,
-      "signalRatio": 98,
-      "highlightsCount": 8,
+      "latency": 260,
+      "tokens": 980,
+      "costPer100k": 294,
+      "noiseRatio": 1,
+      "signalRatio": 99,
       "isWebset": true,
       "results": [
         {
-          "title": "Cognition (Devin): Enterprise Security Architecture & Compliance",
-          "url": "https://cognition.ai/security",
-          "entityName": "Cognition AI (Devin)",
-          "persona": "Autonomous Software Engineer",
-          "soc2Status": "✓ SOC 2 Type II Certified",
-          "deployment": "Goldman Sachs, Stripe",
+          "entityName": "Draft & Goal (dng.ai)",
+          "persona": "AI Governance & Safety Agents",
+          "soc2Status": "SOC 2 Type II Verified",
+          "deployment": "Multi-Cloud (US / EU)",
+          "url": "https://dng.ai/trust/",
           "highlights": [
-            "Cognition has completed our SOC 2 Type II examination covering Security, Availability, and Confidentiality.",
-            "All autonomous code generation environments run in ephemeral micro-sandboxes with zero customer code retention."
-          ],
-          "tokens": 310,
-          "verified": true
+            "Security, compliance, privacy, and responsible-AI practices — documented and audit-ready. SOC 2 Type II independently audited security controls, ISO 27001, and ISO 42001 certified.",
+            "Subprocessors vetted and listed: Google Cloud, Anthropic (Model inference), OpenAI, Cloudflare. Role-based access, least privilege, and full audit logging."
+          ]
         },
         {
-          "title": "Harvey AI: Legal Intelligence Platform Security & Trust Portal",
-          "url": "https://harvey.ai/trust",
-          "entityName": "Harvey AI",
-          "persona": "Legal & Compliance AI Agent",
-          "soc2Status": "✓ SOC 2 Type II Certified",
-          "deployment": "PwC, Allen & Overy",
+          "entityName": "TierZero Enterprise (tierzero.ai)",
+          "persona": "Autonomous AI SRE Agents",
+          "soc2Status": "SOC 2 Type II + HIPAA",
+          "deployment": "On-Prem / VPC via Terraform",
+          "url": "https://www.tierzero.ai/enterprise/",
           "highlights": [
-            "Harvey is certified SOC 2 Type II and HIPAA compliant, engineered to handle confidential legal documents.",
-            "Customer data is encrypted in transit and at rest with customer-managed encryption keys (CMEK)."
-          ],
-          "tokens": 320,
-          "verified": true
-        },
-        {
-          "title": "Sierra AI: Enterprise Conversational Platform Trust Report",
-          "url": "https://sierra.ai/security",
-          "entityName": "Sierra AI (Bret Taylor)",
-          "persona": "Enterprise Customer Experience Agent",
-          "soc2Status": "✓ SOC 2 Type II Certified",
-          "deployment": "WeightWatchers, SiriusXM",
-          "highlights": [
-            "Sierra maintains annual SOC 2 Type II certification and ISO 27001 compliance for enterprise agentic workflows.",
-            "Guaranteed zero model training on customer interactions with deterministic policy guardrails."
-          ],
-          "tokens": 330,
-          "verified": true
-        },
-        {
-          "title": "Hebbia AI: Matrix Financial Analysis Platform Security",
-          "url": "https://hebbia.ai/security",
-          "entityName": "Hebbia AI",
-          "persona": "Financial Due Diligence Matrix Agent",
-          "soc2Status": "✓ SOC 2 Type II Certified",
-          "deployment": "Top Tier Private Equity & Hedge Funds",
-          "highlights": [
-            "Hebbia Matrix is SOC 2 Type II certified and penetration-tested quarterly by independent cybersecurity auditors.",
-            "Audited for high-stakes M&A due diligence, financial model extraction, and SEC document parsing."
-          ],
-          "tokens": 330,
-          "verified": true
+            "AI production agents built for critical infrastructure. SOC 2 Type II & HIPAA certified and audited for regulated industries. Annual third-party penetration testing.",
+            "Industry-first 95% accuracy SLA grounded in production telemetry. Optional zero-data retention mode where nothing is stored post-session."
+          ]
         }
       ],
-      "agentSynthesis": "⚡ Verified Exa Webset Output (Structured Entity Database):\n\nBuilt structured CRM-ready database of 4 enterprise-grade autonomous AI agent platforms with verified SOC 2 Type II certification:\n\n| Company | Agent Persona | Security / Compliance | Production Customers | Source Proof |\n| :--- | :--- | :--- | :--- | :--- |\n| **Cognition AI** | Software Engineer (Devin) | ✓ SOC 2 Type II (Zero Retention) | Goldman Sachs, Stripe | [cognition.ai/security](https://cognition.ai/security) |\n| **Harvey AI** | Legal Due Diligence Agent | ✓ SOC 2 Type II + HIPAA + CMEK | PwC, Allen & Overy | [harvey.ai/trust](https://harvey.ai/trust) |\n| **Sierra AI** | Enterprise CX Agent | ✓ SOC 2 Type II + ISO 27001 | WeightWatchers, SiriusXM | [sierra.ai/security](https://sierra.ai/security) |\n| **Hebbia AI** | Financial Matrix Analyst | ✓ SOC 2 Type II (Quarterly Audits) | Major Private Equity Funds | [hebbia.ai/security](https://hebbia.ai/security) |\n\nAll entities verified with 100% auditable source URLs and zero human data entry."
+      "agentSynthesis": {
+        "verdict": "STRUCTURED WEBSET COMPILED",
+        "badge": "✓ 100% Machine-Parsed Entities",
+        "description": "Exa semantic filter instantly identified and structured 2 enterprise AI agent platforms with verified SOC 2 Type II trust centers, subprocessor transparency, and compliance documentation. Ready for CRM ingestion or security vetting."
+      }
     }
   }
 }
