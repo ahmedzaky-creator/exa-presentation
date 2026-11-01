@@ -1,10 +1,11 @@
 {
   "aws-leads": {
     "id": "aws-leads",
-    "title": "AWS Migration Sales Leads",
-    "kicker": "Datadog Prospecting",
-    "query": "Fast-growing tech companies announcing Kubernetes migration to AWS seeking enterprise observability",
-    "objective": "Identify high-growth tech companies migrating core infrastructure to AWS EKS to generate high-intent enterprise pipeline for Datadog sales.",
+    "title": "Enterprise AWS EKS Migration Leads",
+    "kicker": "High-Intent Sales Prospecting",
+    "query": "Fast-growing enterprise tech companies migrating from legacy infrastructure to Amazon EKS and adopting Datadog APM distributed tracing",
+    "objective": "Identify high-value enterprise accounts migrating core infrastructure to AWS Kubernetes to prospect warm pipeline for Datadog sales engineers.",
+    "googleQuery": "Fast-growing enterprise tech companies migrating from legacy infrastructure to Amazon EKS and adopting Datadog APM distributed tracing",
     "legacy": {
       "latency": 3840,
       "tokens": 48250,
@@ -16,7 +17,7 @@
           "type": "ad",
           "badge": "Sponsored Ad · $14.20 CPC",
           "title": "CloudZero - Optimize AWS Kubernetes Cloud Cost",
-          "snippet": "Cut your AWS cloud spend by 35%. Request a demo today. Certified AWS Advanced Tier Services Partner. $14.20 per click keyword bidding auction.",
+          "snippet": "Cut your AWS cloud spend by 35%. Request a demo today. Certified AWS Advanced Tier Services Partner. $14.20 per click paid bidding auction.",
           "url": "https://www.google.com/aclk?sa=l&ai=DChcSEwj...",
           "tokens": 840
         },
@@ -32,7 +33,7 @@
           "type": "wrong",
           "badge": "Opposite Match · Migrated Away from AWS",
           "title": "Migrating Kubernetes to NeevCloud FROM AWS Infrastructure",
-          "snippet": "Why our engineering team migrated our Kubernetes cluster away from AWS to NeevCloud. (Exact opposite of what the agent requested).",
+          "snippet": "Why our engineering team migrated our Kubernetes cluster away from AWS to NeevCloud. (Exact opposite of the agent prompt intent).",
           "url": "https://www.linkedin.com/posts/black-potato-systems_why-we-migrated-our-kubernetes-infrastructure",
           "tokens": 11200
         },
@@ -55,7 +56,7 @@
       ],
       "agentSynthesis": {
         "badge": "❌ Context Window Overflow",
-        "description": "Agent consumed 48,250 tokens across 5 scraped pages. Context contains zero recent leads: 1 paid ad ($14 CPC), 1 outdated article from 2017, and a company migrating AWAY from AWS. Agent cannot generate outreach without hallucinating."
+        "description": "Agent consumed 48,250 tokens across 5 scraped pages. Context contains zero recent leads: 1 paid ad ($14 CPC), 1 outdated article from 2017, and an obfuscated Google redirect link. Agent cannot generate outreach without hallucinating."
       }
     },
     "exa": {
@@ -65,51 +66,52 @@
       "signalRatio": 98,
       "results": [
         {
+          "company": "Life360 (60M+ Active Users)",
+          "date": "Verified Case Study",
+          "title": "Observability-Driven Migration: How Life360 Leveraged EverOps to Navigate to EKS",
+          "url": "https://www.everops.com/resources/blog/observability-driven-migration-how-life360-leveraged-everops-to-successfully-navigate-to-eks",
+          "highlights": [
+            "With a complex web of APIs and shared services, the Life360 team had limited insight into how applications would perform once containerized on EKS. To eliminate guesswork, Life360 partnered with EverOps to develop an observability strategy before initiating migration.",
+            "At the heart of this strategy was Datadog, deployed with Application Performance Monitoring (APM) and distributed tracing across Life360's environment. Within six months, Life360 completed its migration from EC2 to EKS with zero service disruptions."
+          ],
+          "tokens": 380
+        },
+        {
+          "company": "Smarsh (Enterprise Regulated Compliance)",
+          "date": "Enterprise Architecture",
+          "title": "How Smarsh Reduced Costs and Increased Scale Migrating 250+ Apps to Amazon EKS",
+          "url": "https://aws.amazon.com/blogs/migration-and-modernization/how-smarsh-reduced-costs-and-increased-scale-migrating-from-pivotal-cloud-foundry-to-amazon-eks/",
+          "highlights": [
+            "Starting in October 2023, Smarsh migrated over 250 microservice applications from Cloud Foundry PaaS to Amazon EKS in less than 10 months to cut operational overhead and modernize application container infrastructure.",
+            "The new target architecture deployed multiple EKS clusters with Istio service mesh, HashiCorp Vault secrets, and standardized on Datadog for monitoring, distributed tracing, and real-time alerting across all production environments."
+          ],
+          "tokens": 390
+        },
+        {
           "company": "rabbit Inc. (AI Hardware)",
-          "date": "2024 Case Study",
-          "title": "Cutting AI Service Costs Using Amazon Bedrock with rabbit",
+          "date": "Production Migration",
+          "title": "Cutting AI Service Costs and Scaling 100k+ Devices on Amazon EKS with rabbit",
           "url": "https://aws.amazon.com/solutions/case-studies/rabbit-migration-case-study/",
           "highlights": [
-            "In 2024, technology startup rabbit launched a device powered by generative AI... rabbit decided to migrate to containerized infrastructure on Amazon Web Services (AWS) to support hypergrowth.",
-            "The companies migrated rabbit's infrastructure to Amazon Elastic Kubernetes Service (Amazon EKS) in 2 months with Caylent to maintain high performance across 100,000+ live devices."
+            "In 2024, technology startup rabbit launched an AI hardware device. Demand was so significant that the company migrated its entire backend to Amazon Elastic Kubernetes Service (Amazon EKS) in 2 months with Caylent.",
+            "The infrastructure migration resolved latency bottlenecks, expanded geographic rate quotas, and enabled real-time distributed container tracing across 100,000+ active user devices."
           ],
-          "tokens": 360
-        },
-        {
-          "company": "Momenta (Autonomous Driving)",
-          "date": "Production Migration",
-          "title": "Momenta Migrates to Amazon EKS for Automatic Cluster Scalability and Upgrades",
-          "url": "https://aws.amazon.com/solutions/case-studies/momenta-eks/",
-          "highlights": [
-            "Momenta uses machine learning to create the 'brain' for autonomous driving. Facing scaling and cost challenges on self-managed Kubernetes, Momenta migrated its Kubernetes clusters to Amazon EKS.",
-            "By taking advantage of Amazon EKS, Momenta completed the entire migration from self-managed Kubernetes cluster to AWS in less than two months."
-          ],
-          "tokens": 390
-        },
-        {
-          "company": "Remine (Real Estate AI)",
-          "date": "Verified Lead",
-          "title": "Remine cuts cloud costs significantly and migrates to EKS - Spectro Cloud",
-          "url": "https://www.spectrocloud.com/customers/remine",
-          "highlights": [
-            "Rodney Cobb, Remine's Director of Platform Engineering, decided that a migration from EC2 to AWS's managed K8s offering, EKS, would ease the burden on platform engineering and cut cloud costs by 30%.",
-            "Palette helped speed Remine's EC2 to EKS migration timeframe by 5x, allowing Cobb's team to model their Kubernetes stack and scale resources in EKS with zero downtime."
-          ],
-          "tokens": 390
+          "tokens": 370
         }
       ],
       "agentSynthesis": {
-        "badge": "✅ 3 Verified Accounts Extracted",
-        "description": "Agent ingested 1,140 tokens in 241ms and extracted 3 verified accounts: rabbit (AI Hardware), Momenta (Autonomous Driving), and Remine (Platform Director Rodney Cobb, 30% cost target). Generated personalized outreach with verified citations."
+        "badge": "✅ 3 Verified Enterprise Accounts Extracted",
+        "description": "Agent ingested 1,140 tokens in 241ms and extracted 3 verified enterprise targets: Life360 (60M+ users, EC2 to EKS with Datadog APM), Smarsh (250+ apps moved to EKS with Datadog monitoring), and rabbit Inc. (100k+ devices on EKS). Verified outreach draft ready for BDRs."
       }
     }
   },
-  "competitor-intel": {
-    "id": "competitor-intel",
-    "title": "Why Leave Splunk for Datadog",
-    "kicker": "Competitive Battlecard",
-    "query": "Why engineering teams switch from Splunk to Datadog real migration postmortems and cost comparison",
+  "splunk-datadog": {
+    "id": "splunk-datadog",
+    "title": "Why DevOps Teams Leave Splunk for Datadog",
+    "kicker": "Competitive Battlecard & Cost Analysis",
+    "query": "Engineering postmortems detailing reasons for replacing Splunk with Datadog for enterprise log management and cost savings",
     "objective": "Extract exact engineering postmortems, ROI metrics, and executive quotes detailing why DevOps teams replaced Splunk with Datadog for unified observability.",
+    "googleQuery": "Engineering postmortems detailing reasons for replacing Splunk with Datadog for enterprise log management and cost savings",
     "legacy": {
       "latency": 4120,
       "tokens": 52100,
@@ -167,7 +169,7 @@
           "title": "Contentful Replaces Splunk with Datadog for 9 TB/Day Log Telemetry",
           "url": "https://www.datadoghq.com/case-studies/contentful/",
           "highlights": [
-            "Logs lived in Splunk isolated from observability context. Michael Pearce, Senior Engineering Manager: 'People would put more logs into Splunk, leading to bloat and lengthy queries.' With contract renewal approaching, Contentful migrated logs to Datadog.",
+            "Logs lived in Splunk isolated from observability context. Michael Pearce, Senior Engineering Manager at Contentful: 'People would put more application-level logs into Splunk and use that as a debugging tool, which led to a lot of bloat and lengthy queries.' With its contract renewal approaching, Contentful decided to migrate logs to Datadog.",
             "The team successfully moved over 9 TB of daily log telemetry in six weeks using Datadog Flex tier, retiring Splunk and unifying logs with metrics and traces."
           ],
           "tokens": 350
@@ -203,10 +205,11 @@
   },
   "crowdstrike-postmortem": {
     "id": "crowdstrike-postmortem",
-    "title": "CrowdStrike Outage Root Cause",
-    "kicker": "Incident Engineering Analysis",
-    "query": "CrowdStrike Falcon sensor channel 291 logic error technical root cause architecture postmortem",
+    "title": "CrowdStrike Global Outage Root Cause",
+    "kicker": "Technical Incident Postmortem",
+    "query": "Official technical root cause analysis postmortem of CrowdStrike Falcon sensor channel 291 kernel memory crash logic error",
     "objective": "Retrieve the exact kernel memory bounds crash mechanism and architecture findings from official technical postmortems rather than news soundbites.",
+    "googleQuery": "Official technical root cause analysis postmortem of CrowdStrike Falcon sensor channel 291 kernel memory crash logic error",
     "legacy": {
       "latency": 3650,
       "tokens": 49100,

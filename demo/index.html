@@ -3,86 +3,111 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#0a0e17">
-  <title>Exa vs Google — AI Agent Search Engine Benchmark</title>
+  <meta name="theme-color" content="#070a12">
+  <title>Exa vs Google — Live AI Agent Retrieval Benchmark</title>
   <meta name="description" content="Side-by-side interactive comparison: Why autonomous AI agents break on Google and thrive on Exa.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="demo.css?v=fresh5">
+  <link rel="stylesheet" href="demo.css?v=fresh9">
 </head>
 <body class="arena-body">
 
-  <!-- TOP HEADER -->
+  <!-- TOP COMMAND HEADER -->
   <header class="top-nav">
     <div class="nav-left">
       <a class="deck-link" href="../v2/index.html#0" title="Return to Slide Presentation">
-        <span>←</span>
+        <span class="back-arrow">←</span>
         <span>SLIDE PRESENTATION</span>
       </a>
       <div class="brand-divider"></div>
       <div class="nav-title">
-        <strong>EXA</strong> <span class="vs-text">VS</span> <strong>GOOGLE</strong>
+        <span class="exa-brand">EXA</span>
+        <span class="vs-text">VS</span>
+        <span class="google-brand">GOOGLE</span>
         <span class="nav-tag">AGENT BENCHMARK</span>
       </div>
     </div>
 
     <div class="nav-right">
-      <div id="livePill" class="live-pill" title="Live Exa API connected and ready">
+      <div id="livePill" class="live-pill" title="Live Exa API connected (Paid Tier)">
         <span class="live-dot"></span>
         <span id="liveStatusText">EXA LIVE API ACTIVE (PAID TIER)</span>
       </div>
     </div>
   </header>
 
-  <!-- MAIN WRAPPER -->
+  <!-- MAIN STAGE -->
   <main class="main-wrapper">
 
     <!-- SEARCH & SCENARIOS HERO -->
     <section class="hero-search-area">
       <div class="search-title-wrap">
         <h1 class="main-heading">Search Engine for AI Agents</h1>
-        <p class="sub-heading">Compare real-time agent retrieval: Legacy Human SERP + DOM Scraper vs Exa Neural Embeddings</p>
+        <p class="sub-heading">Compare real-time agent retrieval on long, precise, high-intent queries: Human SERP + DOM Scraper vs Exa Neural Embeddings</p>
       </div>
 
-      <!-- MAIN SEARCH BAR -->
+      <!-- MAIN QUERY INPUT BAR -->
       <div class="search-bar-shell">
         <div class="search-prompt-icon">⚡</div>
-        <input id="queryInput" class="search-input-field" type="text" placeholder="Enter an AI agent search query..." autocomplete="off">
-        <button id="runBtn" class="search-action-btn">
-          <span id="runBtnLabel">Run Live Comparison ⚡</span>
-        </button>
+        <input id="queryInput" class="search-input-field" type="text" placeholder="Enter a long, precise AI agent search query..." autocomplete="off">
+        
+        <div class="search-actions-group">
+          <!-- Live Comparison Button -->
+          <button id="runBtn" class="search-action-btn primary-btn">
+            <span id="runBtnLabel">Run Live Comparison ⚡</span>
+          </button>
+          
+          <!-- Open in Real Google Tab Button -->
+          <button id="openGoogleBtn" class="search-action-btn google-btn" title="Open this exact query in a real Google Search tab to see the ads and noise">
+            <span>Open in Google ↗</span>
+          </button>
+        </div>
       </div>
 
-      <!-- 3 KILLER SCENARIO CHIPS -->
-      <div class="scenarios-row">
-        <span class="scenarios-label">FEATURED LIVE SCENARIOS:</span>
+      <!-- 3 KILLER SCENARIO CHIPS IN 3-COLUMN GRID -->
+      <div class="scenarios-container">
+        <div class="scenarios-header-row">
+          <span class="scenarios-label">⚡ SELECT HIGH-INTENT ENTERPRISE SCENARIO</span>
+          <span class="scenarios-hint">Click any scenario to load a real enterprise query and see how Exa vs Google perform</span>
+        </div>
 
-        <button class="scenario-chip active" data-preset="aws-leads">
-          <span class="chip-icon">🎯</span>
-          <span class="chip-title">AWS Migration Leads</span>
-          <span class="chip-badge">Datadog Prospecting</span>
-        </button>
+        <div class="scenarios-grid">
+          <button class="scenario-chip active" data-preset="aws-leads" title="Datadog sales prospecting for enterprise accounts migrating to EKS">
+            <span class="chip-icon">🎯</span>
+            <div class="chip-text">
+              <span class="chip-title">AWS EKS Migration Leads</span>
+              <span class="chip-sub">Datadog Sales Prospecting · Life360 &amp; Smarsh</span>
+            </div>
+            <span class="chip-badge-status">ACTIVE</span>
+          </button>
 
-        <button class="scenario-chip" data-preset="competitor-intel">
-          <span class="chip-icon">⚔️</span>
-          <span class="chip-title">Why Leave Splunk for Datadog</span>
-          <span class="chip-badge">Competitive Intel</span>
-        </button>
+          <button class="scenario-chip" data-preset="splunk-datadog" title="Competitive win stories: Contentful & Lululemon moving from Splunk to Datadog">
+            <span class="chip-icon">⚔️</span>
+            <div class="chip-text">
+              <span class="chip-title">Why Leave Splunk for Datadog</span>
+              <span class="chip-sub">Competitive Intel &amp; ROI · Contentful &amp; Lululemon</span>
+            </div>
+            <span class="chip-badge-status">SELECT</span>
+          </button>
 
-        <button class="scenario-chip" data-preset="crowdstrike-postmortem">
-          <span class="chip-icon">🚨</span>
-          <span class="chip-title">CrowdStrike Outage Postmortem</span>
-          <span class="chip-badge">Technical Root Cause</span>
-        </button>
+          <button class="scenario-chip" data-preset="crowdstrike-postmortem" title="Technical root cause analysis: Falcon sensor channel 291 kernel pointer crash">
+            <span class="chip-icon">🚨</span>
+            <div class="chip-text">
+              <span class="chip-title">CrowdStrike Kernel Outage RCA</span>
+              <span class="chip-sub">Technical Root Cause · Channel 291 Pointer Crash</span>
+            </div>
+            <span class="chip-badge-status">SELECT</span>
+          </button>
+        </div>
       </div>
 
       <!-- DIRECTIVE CALLOUT -->
       <div class="directive-box">
         <span class="directive-kicker">🤖 AGENT DIRECTIVE:</span>
         <span id="objectiveText" class="directive-content">
-          Identify high-growth tech companies migrating core infrastructure to AWS EKS to generate high-intent enterprise pipeline for Datadog sales.
+          Identify high-value enterprise accounts migrating core infrastructure to AWS Kubernetes to prospect warm pipeline for Datadog sales engineers.
         </span>
       </div>
     </section>
@@ -100,8 +125,13 @@
               <span class="pane-subtitle">Human Ad-Funded SERP + Raw DOM Scraping</span>
             </div>
           </div>
-          <div id="legacyStats" class="pane-metric metric-danger">
-            <span id="legacyTokens">48,250 Tokens</span> · <span id="legacyLatency">3,840ms</span>
+          <div class="header-right-tools">
+            <div id="legacyStats" class="pane-metric metric-danger">
+              <span id="legacyTokens">48,250 Tokens</span> · <span id="legacyLatency">3,840ms</span>
+            </div>
+            <button id="paneGoogleLink" class="pane-google-btn" title="Open this query in real Google Search">
+              Verify in Google ↗
+            </button>
           </div>
         </div>
 
@@ -143,13 +173,16 @@
               <span class="pane-subtitle">Direct Semantic Embeddings &amp; Dynamic Highlights</span>
             </div>
           </div>
-          <div id="exaStats" class="pane-metric metric-success">
-            <span id="exaTokens">1,140 Tokens</span> · <span id="exaLatency">241ms</span>
+          <div class="header-right-tools">
+            <div id="exaStats" class="pane-metric metric-success">
+              <span id="exaTokens">1,140 Tokens</span> · <span id="exaLatency">241ms</span>
+            </div>
+            <span class="pure-signal-tag">98% PURE SIGNAL</span>
           </div>
         </div>
 
         <div class="pane-banner banner-success">
-          <span>✓ 98% Pure Signal · Surgical Dynamic Highlights · Zero Scraping</span>
+          <span>✓ Pure Signal: Surgical Dynamic Highlights · Zero Scraping Overhead</span>
         </div>
 
         <!-- Live Running Stepper during race -->
@@ -171,14 +204,14 @@
             <span id="exaVerdictBadge" class="verdict-status-pill status-pass">✅ 3 VERIFIED LEADS EXTRACTED</span>
           </div>
           <p id="exaVerdictText" class="verdict-text">
-            Agent ingested 1,140 tokens in 241ms and extracted 3 verified accounts: rabbit (AI Hardware), Momenta (Autonomous Driving), and Remine (Platform Director Rodney Cobb). Generated personalized outreach with verified citations.
+            Agent ingested 1,140 tokens in 241ms and extracted 3 verified accounts: Life360 (60M+ users), Smarsh (250+ apps), and rabbit Inc. (100k+ devices). Generated personalized outreach with verified citations.
           </p>
         </div>
       </div>
 
     </section>
 
-    <!-- EXECUTIVE SCORECARD -->
+    <!-- EXECUTIVE IMPACT SCORECARD -->
     <section class="scorecard-section">
       <div class="scorecard-tile">
         <span class="tile-kicker">PROMPT CONTEXT REDUCTION</span>
@@ -211,11 +244,11 @@
       </div>
     </section>
 
-    <!-- NON-BLOCKING INLINE API SETTINGS (COLLAPSIBLE) -->
+    <!-- NON-BLOCKING INLINE API SETTINGS (COLLAPSIBLE DRAWER) -->
     <section class="api-drawer-section">
       <details class="api-details">
         <summary class="api-summary">
-          <span>⚙️ API Keys &amp; Settings (Live Paid Keys Configured)</span>
+          <span>⚙️ API Keys &amp; Settings (Paid Keys Configured &amp; Active)</span>
         </summary>
         <div class="api-drawer-content">
           <div class="api-field">
@@ -233,6 +266,6 @@
 
   </main>
 
-  <script src="demo.js?v=fresh5"></script>
+  <script src="demo.js?v=fresh9"></script>
 </body>
 </html>

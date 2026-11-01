@@ -42,9 +42,14 @@
     if (!presets[presetId]) return;
     currentPresetId = presetId;
 
-    // Update active chip
+    // Update active chip & status badge
     document.querySelectorAll('.scenario-chip').forEach(chip => {
-      chip.classList.toggle('active', chip.dataset.preset === presetId);
+      const isActive = chip.dataset.preset === presetId;
+      chip.classList.toggle('active', isActive);
+      const statusBadge = chip.querySelector('.chip-badge-status');
+      if (statusBadge) {
+        statusBadge.textContent = isActive ? 'ACTIVE' : 'SELECT';
+      }
     });
 
     const data = presets[presetId];
@@ -372,6 +377,16 @@
     $('queryInput').addEventListener('keydown', e => {
       if (e.key === 'Enter') runLiveBenchmark();
     });
+
+    // Open Real Google Search in New Tab
+    const openGoogle = () => {
+      const q = $('queryInput').value.trim();
+      if (q) {
+        window.open(`https://www.google.com/search?q=${encodeURIComponent(q)}`, '_blank', 'noopener,noreferrer');
+      }
+    };
+    if ($('openGoogleBtn')) $('openGoogleBtn').addEventListener('click', openGoogle);
+    if ($('paneGoogleLink')) $('paneGoogleLink').addEventListener('click', openGoogle);
 
     // Save Keys
     if ($('saveKeyBtn')) {
