@@ -71,6 +71,7 @@
           <span class="pill-badge pill-speed">⚡ 180ms Latency</span>
           <span class="pill-badge pill-cut">✂ 95% Token Cut</span>
         </div>
+        <div class="evidence-lines">${docLines}</div>
         ${link(EXA_SEARCH, 'Explore Exa API Specs')}
       </div>
       ${caption('Autonomous web retrieval with 100% auditable source citations')}
@@ -209,7 +210,7 @@
         <div class="map-term term-two">“Cheap family beach trip”</div>
       </div>
       <div class="map-legend">
-        ${isIndex?'<span>1. Read Web Page</span><b>→</b><span>2. Turn into Numbers (Vector)</span><b>→</b><span>3. Pin onto Map</span>':name==='meaning'?'<span>Different words with the same meaning land as neighbors.</span>':'<span>Drop Query Pin</span><b>→</b><span>Instantly Match Closest Pages</span>'}
+        ${isIndex?'<span>1. Read Web Page</span><b>→</b><span>2. Turn into Vector (GPS)</span><b>→</b><span>3. Pin onto Map</span>':name==='meaning'?'<span>Different words with the same meaning land as neighbors.</span>':'<span>Drop Query Pin</span><b>→</b><span>Instantly Match Closest Pages</span>'}
       </div>
       ${caption('A vector is a GPS coordinate for meaning · Embeddings group identical concepts together')}
     </div>`;
@@ -472,212 +473,454 @@
     if (!scene) return [];
     const animations = [];
     const one = s => scene.querySelector(s), all = s => [...scene.querySelectorAll(s)];
-    const run = (el, frames) => {
-      if (el) animations.push(el.animate(frames, { duration: 6000, fill: 'both', easing: 'linear' }));
+
+    const DURATION = 5200;
+
+    const run = (el, frames, opts = {}) => {
+      if (!el) return null;
+      const anim = el.animate(frames, { duration: DURATION, fill: 'both', easing: 'linear', ...opts });
+      animations.push(anim);
+      return anim;
     };
-    const reveal = (el, start = .12, end = .42, dx = 0, dy = 18) => run(el, [
-      { offset: 0, opacity: 0, transform: `translate(${dx}px,${dy}px)` },
-      { offset: start, opacity: 0, transform: `translate(${dx}px,${dy}px)`, easing: 'cubic-bezier(.22,.7,.2,1)' },
-      { offset: end, opacity: 1, transform: 'translate(0,0)' },
-      { offset: 1, opacity: 1, transform: 'translate(0,0)' }
+
+    const SPRING_EASE = 'cubic-bezier(0.16, 1, 0.3, 1)';
+    const BOUNCE_EASE = 'cubic-bezier(0.34, 1.45, 0.64, 1)';
+    const SMOOTH_EASE = 'cubic-bezier(0.4, 0, 0.2, 1)';
+
+    const reveal = (el, start = .08, end = .36, dx = 0, dy = 20, ease = SPRING_EASE) => run(el, [
+      { offset: 0, opacity: 0, transform: `translate3d(${dx}px,${dy}px,0)` },
+      { offset: start, opacity: 0, transform: `translate3d(${dx}px,${dy}px,0)`, easing: ease },
+      { offset: end, opacity: 1, transform: 'translate3d(0,0,0)' },
+      { offset: 1, opacity: 1, transform: 'translate3d(0,0,0)' }
     ]);
-    const draw = (el, start = .12, end = .55) => run(el, [
+
+    const pop = (el, start = .1, end = .38, maxScale = 1.15) => run(el, [
+      { offset: 0, opacity: 0, transform: 'scale3d(0.5,0.5,1)' },
+      { offset: start, opacity: 0, transform: 'scale3d(0.5,0.5,1)', easing: BOUNCE_EASE },
+      { offset: (start + end) / 2, opacity: 1, transform: `scale3d(${maxScale},${maxScale},1)` },
+      { offset: end, opacity: 1, transform: 'scale3d(1,1,1)' },
+      { offset: 1, opacity: 1, transform: 'scale3d(1,1,1)' }
+    ]);
+
+    const draw = (el, start = .1, end = .45) => run(el, [
       { offset: 0, transform: 'scaleX(0)' },
-      { offset: start, transform: 'scaleX(0)' },
+      { offset: start, transform: 'scaleX(0)', easing: SMOOTH_EASE },
       { offset: end, transform: 'scaleX(1)' },
       { offset: 1, transform: 'scaleX(1)' }
     ]);
-    const move = (el, origin, start = .18, end = .63) => {
+
+    const pulse = (el, start = .15, end = .55, color = 'rgba(37,99,235,0.35)') => run(el, [
+      { offset: 0, boxShadow: '0 0 0 0 rgba(0,0,0,0)' },
+      { offset: start, boxShadow: '0 0 0 0 rgba(0,0,0,0)', easing: SMOOTH_EASE },
+      { offset: (start + end) / 2, boxShadow: `0 0 0 16px ${color}` },
+      { offset: end, boxShadow: '0 0 0 0 rgba(0,0,0,0)' },
+      { offset: 1, boxShadow: '0 0 0 0 rgba(0,0,0,0)' }
+    ]);
+
+    const move = (el, origin, start = .16, end = .58) => {
       if (!el || !origin) return;
       const a = el.getBoundingClientRect(), b = origin.getBoundingClientRect();
       const dx = b.left - a.left, dy = b.top - a.top, scale = b.width / a.width;
-      const from = `translate(${dx}px,${dy}px) scale(${scale})`;
+      const from = `translate3d(${dx}px,${dy}px,0) scale(${scale})`;
       el.style.transformOrigin = 'top left';
       run(el, [
-        { offset: 0, transform: from },
-        { offset: start, transform: from, easing: 'cubic-bezier(.22,.7,.2,1)' },
-        { offset: end, transform: 'translate(0,0) scale(1)' },
-        { offset: 1, transform: 'translate(0,0) scale(1)' }
+        { offset: 0, transform: from, boxShadow: '0 4px 10px rgba(0,0,0,0.05)' },
+        { offset: start, transform: from, boxShadow: '0 4px 10px rgba(0,0,0,0.05)', easing: SPRING_EASE },
+        { offset: (start + end) / 2, transform: `translate3d(${dx * 0.45}px,${dy * 0.45 - 20}px,0) scale(${(scale + 1) / 2 * 1.05})`, boxShadow: '0 24px 48px rgba(16,185,129,0.22)' },
+        { offset: end, transform: 'translate3d(0,0,0) scale(1)', boxShadow: '0 10px 25px rgba(16,185,129,0.12)' },
+        { offset: 1, transform: 'translate3d(0,0,0) scale(1)', boxShadow: '0 10px 25px rgba(16,185,129,0.12)' }
       ]);
     };
-    const pulse = (el, start = .15, end = .65) => run(el, [
-      { offset: 0, boxShadow: '0 0 0 0 rgba(59,130,246,0)' },
-      { offset: start, boxShadow: '0 0 0 0 rgba(59,130,246,0)' },
-      { offset: (start + end) / 2, boxShadow: '0 0 0 14px rgba(59,130,246,.16)' },
-      { offset: end, boxShadow: '0 0 0 0 rgba(59,130,246,0)' },
-      { offset: 1, boxShadow: '0 0 0 0 rgba(59,130,246,0)' }
-    ]);
 
     if (scene.classList.contains('scene--intro')) {
-      reveal(one('.intro-motif'), .02, .29, 0, 24);
+      reveal(one('.intro-motif'), .02, .26, 0, 24);
       run(one('.intro-halo'), [
-        { offset: 0, opacity: 0, transform: 'scale(.7)' },
-        { offset: .4, opacity: 1, transform: 'scale(1)' },
+        { offset: 0, opacity: 0, transform: 'scale(.6)' },
+        { offset: .35, opacity: 1, transform: 'scale(1)', easing: SPRING_EASE },
         { offset: 1, opacity: 1, transform: 'scale(1)' }
       ]);
-      if (name === 'builder') {
-        all('.gv-node').forEach((el, i) => reveal(el, .1 + i * .12, .32 + i * .12, 0, 14));
-        all('.gv-arrow').forEach((el, i) => reveal(el, .2 + i * .12, .38 + i * .12, -10, 0));
+
+      if (name === 'browse') {
+        run(one('.intro-browser'), [
+          { offset: 0, transform: 'perspective(1000px) rotateY(-12deg) scale(0.92)' },
+          { offset: .05, transform: 'perspective(1000px) rotateY(-12deg) scale(0.92)', easing: SPRING_EASE },
+          { offset: .35, transform: 'perspective(1000px) rotateY(-5deg) scale(1)' },
+          { offset: 1, transform: 'perspective(1000px) rotateY(-5deg) scale(1)' }
+        ]);
+        run(one('.intro-cursor'), [
+          { offset: 0, opacity: 0, transform: 'translate3d(40px, 60px, 0) scale(0.8)' },
+          { offset: .22, opacity: 1, transform: 'translate3d(40px, 60px, 0) scale(1)', easing: SPRING_EASE },
+          { offset: .52, opacity: 1, transform: 'translate3d(-15px, -25px, 0) scale(1)' },
+          { offset: .60, opacity: 1, transform: 'translate3d(-15px, -25px, 0) scale(0.82)' },
+          { offset: .68, opacity: 1, transform: 'translate3d(-15px, -25px, 0) scale(1)' },
+          { offset: 1, opacity: 1, transform: 'translate3d(-15px, -25px, 0) scale(1)' }
+        ]);
+      } else if (name === 'agent') {
+        const brackets = all('.agent-bracket');
+        if (brackets.length === 2) {
+          run(brackets[0], [
+            { offset: 0, transform: 'translateX(35px)' },
+            { offset: .08, transform: 'translateX(35px)', easing: BOUNCE_EASE },
+            { offset: .36, transform: 'translateX(0)' },
+            { offset: 1, transform: 'translateX(0)' }
+          ]);
+          run(brackets[1], [
+            { offset: 0, transform: 'translateX(-35px)' },
+            { offset: .08, transform: 'translateX(-35px)', easing: BOUNCE_EASE },
+            { offset: .36, transform: 'translateX(0)' },
+            { offset: 1, transform: 'translateX(0)' }
+          ]);
+        }
+        pop(one('.agent-face'), .14, .42, 1.12);
+        all('.agent-face i').forEach(el => run(el, [
+          { offset: 0, transform: 'translateY(-15%) scaleY(0.1)' },
+          { offset: .28, transform: 'translateY(-15%) scaleY(0.1)' },
+          { offset: .44, transform: 'translateY(-15%) scaleY(1.3)' },
+          { offset: .54, transform: 'translateY(-15%) scaleY(1)' },
+          { offset: 1, transform: 'translateY(-15%) scaleY(1)' }
+        ]));
+        pulse(one('.agent-face b'), .45, .75, 'rgba(16,185,129,0.5)');
+      } else if (name === 'direct') {
+        run(one('.intro-envelope .intro-page'), [
+          { offset: 0, transform: 'translate3d(0, 45px, 0) scale(0.9)' },
+          { offset: .15, transform: 'translate3d(0, 45px, 0) scale(0.9)', easing: BOUNCE_EASE },
+          { offset: .52, transform: 'translate3d(0, -12px, 0) scale(1.03)' },
+          { offset: .66, transform: 'translate3d(0, 0, 0) scale(1)' },
+          { offset: 1, transform: 'translate3d(0, 0, 0) scale(1)' }
+        ]);
+      } else if (name === 'mechanism') {
+        pop(one('.intro-map > b'), .05, .32, 1.14);
+        pulse(one('.intro-map > b'), .26, .58, 'rgba(37,99,235,0.35)');
+        all('.intro-map > i').forEach((el, i) => pop(el, .2 + i * .09, .38 + i * .09, 1.35));
+      } else if (name === 'passages') {
+        reveal(one('.intro-page.large'), .05, .3, 0, -20);
+        run(one('.intro-highlight'), [
+          { offset: 0, transform: 'scale(0.95)', boxShadow: 'none' },
+          { offset: .32, transform: 'scale(0.95)', boxShadow: 'none', easing: BOUNCE_EASE },
+          { offset: .62, transform: 'scale(1.05)', boxShadow: '0 0 25px rgba(16,185,129,0.4)' },
+          { offset: .75, transform: 'scale(1)', boxShadow: '0 0 16px rgba(16,185,129,0.25)' },
+          { offset: 1, transform: 'scale(1)', boxShadow: '0 0 16px rgba(16,185,129,0.25)' }
+        ]);
+      } else if (name === 'builder') {
+        all('.gv-node').forEach((el, i) => pop(el, .08 + i * .13, .3 + i * .13, 1.12));
+        all('.gv-arrow').forEach((el, i) => {
+          pop(el, .2 + i * .14, .38 + i * .14, 1.3);
+          pulse(el, .3 + i * .14, .55 + i * .14, 'rgba(37,99,235,0.4)');
+        });
+        pulse(one('.gv-ver'), .58, .88, 'rgba(16,185,129,0.4)');
       }
       return animations;
     }
 
     switch (name) {
       case 'opening':
-        reveal(one('.opening-request'), .02, .24, 0, -16);
-        pulse(one('.opening-core'), .16, .55);
-        reveal(one('.opening-evidence'), .32, .65, 35, 0);
-        all('.pill-badge').forEach((el, i) => reveal(el, .45 + i * .08, .65 + i * .08, 0, 8));
+        reveal(one('.opening-request'), .02, .24, 0, -22);
+        pop(one('.opening-core'), .12, .38, 1.14);
+        pulse(one('.opening-core'), .28, .65, 'rgba(37,99,235,0.35)');
+        reveal(one('.opening-evidence'), .26, .52, 35, 0);
+        all('.pill-badge').forEach((el, i) => pop(el, .42 + i * .08, .60 + i * .08, 1.22));
+        all('.evidence-lines i').forEach((el, i) => draw(el, .48 + i * .06, .68 + i * .06));
         break;
+
       case 'ads':
+        reveal(one('.question-chip'), .02, .22, 0, -15);
         run(one('.result-ad'), [
-          { offset: 0, background: '#ffffff', boxShadow: '0 0 0 0 #f59e0b00' },
-          { offset: .15, background: '#ffffff', boxShadow: '0 0 0 0 #f59e0b00' },
-          { offset: .4, background: '#fffbeb', boxShadow: '0 0 0 3px #f59e0b60' },
-          { offset: .65, background: '#fffbeb', boxShadow: '0 0 0 1px #f59e0b40' },
-          { offset: 1, background: '#fffbeb', boxShadow: '0 0 0 1px #f59e0b40' }
+          { offset: 0, transform: 'scale(1)', background: '#fff', borderColor: '#e2e8f0', boxShadow: 'none' },
+          { offset: .18, transform: 'scale(1)', background: '#fff', borderColor: '#e2e8f0', boxShadow: 'none', easing: SPRING_EASE },
+          { offset: .38, transform: 'scale(1.03)', background: '#fef3c7', borderColor: '#f59e0b', boxShadow: '0 0 24px rgba(245,158,11,0.4)' },
+          { offset: .52, transform: 'scale(1.01)', background: '#fffbeb', borderColor: '#f59e0b', boxShadow: '0 0 16px rgba(245,158,11,0.25)' },
+          { offset: 1, transform: 'scale(1.01)', background: '#fff3dc', borderColor: '#f0dfbd', boxShadow: '0 2px 8px rgba(245,158,11,0.1)' }
+        ]);
+        all('.result-organic, .result-useful').forEach(el => run(el, [
+          { offset: 0, opacity: 1 },
+          { offset: .3, opacity: 1 },
+          { offset: .55, opacity: .55 },
+          { offset: 1, opacity: .55 }
+        ]));
+        break;
+
+      case 'seo':
+        reveal(one('.question-chip'), .02, .22, 0, -15);
+        run(one('.result-organic'), [
+          { offset: 0, transform: 'scale(1)', borderColor: 'transparent' },
+          { offset: .18, transform: 'scale(1)', borderColor: 'transparent' },
+          { offset: .32, transform: 'scale(1.025) translateX(-3px)', borderColor: '#818cf8', boxShadow: '0 0 20px rgba(99,102,241,0.3)' },
+          { offset: .42, transform: 'scale(1.025) translateX(3px)', borderColor: '#818cf8', boxShadow: '0 0 20px rgba(99,102,241,0.3)' },
+          { offset: .55, transform: 'scale(1.01) translateX(0)', borderColor: '#9daee7', background: '#edf1ff', boxShadow: '0 0 14px rgba(99,102,241,0.2)' },
+          { offset: 1, transform: 'scale(1.01) translateX(0)', borderColor: '#9daee7', background: '#edf1ff' }
         ]);
         break;
-      case 'seo':
-        pulse(one('.result-organic'), .15, .6);
-        break;
+
       case 'scan':
         run(one('.scan-line'), [
-          { offset: 0, top: '29%', opacity: 0 },
-          { offset: .12, top: '29%', opacity: 1 },
-          { offset: .45, top: '75%', opacity: 1 },
-          { offset: .6, top: '75%', opacity: 0 },
-          { offset: 1, top: '75%', opacity: 0 }
+          { offset: 0, top: '24%', opacity: 0, transform: 'scaleX(0.8)' },
+          { offset: .1, top: '24%', opacity: 1, transform: 'scaleX(1)' },
+          { offset: .52, top: '76%', opacity: 1, transform: 'scaleX(1)' },
+          { offset: .65, top: '76%', opacity: 0, transform: 'scaleX(0.9)' },
+          { offset: 1, top: '76%', opacity: 0 }
         ]);
-        all('.result-row:not(.result-useful)').forEach(el => run(el, [
-          { offset: 0, opacity: 1 },
-          { offset: .4, opacity: 1 },
-          { offset: .65, opacity: .35 },
-          { offset: 1, opacity: .35 }
+        all('.result-row:not(.result-useful)').forEach((el, i) => run(el, [
+          { offset: 0, opacity: 1, filter: 'blur(0px)' },
+          { offset: .22 + i * .08, opacity: 1, filter: 'blur(0px)' },
+          { offset: .52 + i * .08, opacity: .22, filter: 'blur(1.5px)', transform: 'scale(0.97)' },
+          { offset: 1, opacity: .22, filter: 'blur(1.5px)', transform: 'scale(0.97)' }
         ]));
-        pulse(one('.result-useful'), .4, .7);
+        run(one('.result-useful'), [
+          { offset: 0, transform: 'scale(1)', boxShadow: 'none' },
+          { offset: .45, transform: 'scale(1)', boxShadow: 'none', easing: BOUNCE_EASE },
+          { offset: .68, transform: 'scale(1.04)', boxShadow: '0 0 32px rgba(16,185,129,0.45)', borderColor: '#10b981' },
+          { offset: .82, transform: 'scale(1.02)', boxShadow: '0 0 20px rgba(16,185,129,0.3)', borderColor: '#10b981' },
+          { offset: 1, transform: 'scale(1.02)', boxShadow: '0 0 20px rgba(16,185,129,0.3)', borderColor: '#10b981' }
+        ]);
         break;
+
       case 'fanout':
-        all('.fan-steps article').forEach((el, i) => reveal(el, .12 + i * .1, .35 + i * .12, -30, 0));
-        all('.fan-branches span').forEach((el, i) => draw(el, .12 + i * .1, .35 + i * .12));
+        pop(one('.task-core'), .04, .28, 1.12);
+        pulse(one('.task-core'), .22, .55, 'rgba(37,99,235,0.3)');
+        all('.fan-branches span').forEach((el, i) => draw(el, .22 + i * .12, .38 + i * .12));
+        all('.fan-steps article').forEach((el, i) => {
+          reveal(el, .28 + i * .12, .48 + i * .12, 30, 0, BOUNCE_EASE);
+          pulse(el, .45 + i * .12, .7 + i * .12, 'rgba(37,99,235,0.2)');
+        });
         break;
+
       case 'processing':
-        move(one('.process-passage'), one('.process-origin'), .2, .64);
-        all('.strip-noise').forEach(el => run(el, [
-          { offset: 0, opacity: 1 },
-          { offset: .18, opacity: 1 },
-          { offset: .58, opacity: .3 },
-          { offset: 1, opacity: .3 }
+        all('.strip-noise').forEach((el, i) => run(el, [
+          { offset: 0, opacity: 1, filter: 'blur(0px)' },
+          { offset: .15 + i * .03, opacity: 1, filter: 'blur(0px)' },
+          { offset: .44 + i * .03, opacity: .18, filter: 'blur(1.2px)' },
+          { offset: 1, opacity: .18, filter: 'blur(1.2px)' }
         ]));
-        reveal(one('.process-step'), .46, .66, 0, 8);
+        move(one('.process-passage'), one('.process-origin'), .18, .62);
+        pulse(one('.process-context'), .55, .85, 'rgba(16,185,129,0.35)');
+        all('.process-step span').forEach((el, i) => pop(el, .58 + i * .09, .74 + i * .09, 1.15));
         break;
+
       case 'growth':
+        pop(one('.growth-number'), .06, .36, 1.16);
+        pulse(one('.growth-number'), .32, .65, 'rgba(37,99,235,0.3)');
         all('.growth-chart i').forEach((el, i) => run(el, [
-          { offset: 0, transform: 'scaleY(.05)' },
-          { offset: .1 + i * .025, transform: 'scaleY(.05)' },
-          { offset: .45 + i * .025, transform: 'scaleY(1)' },
+          { offset: 0, transform: 'scaleY(0.04)' },
+          { offset: .12 + i * .03, transform: 'scaleY(0.04)', easing: BOUNCE_EASE },
+          { offset: .42 + i * .03, transform: 'scaleY(1.08)' },
+          { offset: .54 + i * .03, transform: 'scaleY(1)' },
           { offset: 1, transform: 'scaleY(1)' }
         ]));
+        reveal(one('.measurement-note'), .52, .74, 0, 15);
         break;
+
       case 'desk':
-        draw(one('.pipe-one i'), .12, .33);
-        pulse(one('.desk-exa'), .27, .5);
-        draw(one('.pipe-two i'), .37, .57);
-        reveal(one('.desk-return'), .45, .68, 25, 0);
+        reveal(one('.question-chip'), .02, .2, 0, -20);
+        draw(one('.pipe-one i'), .15, .34);
+        pop(one('.desk-exa'), .28, .5, 1.18);
+        pulse(one('.desk-exa'), .35, .65, 'rgba(37,99,235,0.4)');
+        draw(one('.pipe-two i'), .44, .62);
+        reveal(one('.desk-return'), .52, .76, 30, 0, BOUNCE_EASE);
+        pulse(one('.desk-return'), .68, .92, 'rgba(16,185,129,0.3)');
         break;
+
       case 'roles':
-        all('.role-exa .role-actions span').forEach((el, i) => reveal(el, .1 + i * .07, .3 + i * .07, 0, 12));
-        reveal(one('.role-transfer'), .32, .5, -10, 0);
-        all('.role-block:not(.role-exa) .role-actions span').forEach((el, i) => reveal(el, .36 + i * .07, .52 + i * .07, 0, 12));
+        pop(one('.role-exa'), .05, .28, 1.05);
+        all('.role-exa .role-actions span').forEach((el, i) => reveal(el, .12 + i * .07, .28 + i * .07, -15, 0));
+        pop(one('.role-transfer'), .3, .48, 1.35);
+        pulse(one('.role-transfer'), .36, .6, 'rgba(37,99,235,0.4)');
+        pop(one('.role-block:not(.role-exa)'), .44, .66, 1.05);
+        all('.role-block:not(.role-exa) .role-actions span').forEach((el, i) => reveal(el, .5 + i * .07, .66 + i * .07, 15, 0));
         break;
+
       case 'economics':
-        all('.business-meter i').forEach((el, i) => draw(el, .15 + i * .12, .48 + i * .12));
+        run(one('.business-card:first-child .business-meter i'), [
+          { offset: 0, transform: 'scaleX(0)' },
+          { offset: .15, transform: 'scaleX(0)' },
+          { offset: .35, transform: 'scaleX(0.3)' },
+          { offset: .45, transform: 'scaleX(0.28)' },
+          { offset: .65, transform: 'scaleX(0.48)' },
+          { offset: 1, transform: 'scaleX(0.48)' }
+        ]);
+        draw(one('.business-exa .business-meter i'), .18, .46);
+        pulse(one('.business-exa'), .44, .75, 'rgba(16,185,129,0.35)');
         break;
+
       case 'index':
+        reveal(one('.map-input-pages'), .05, .25, -20, 0);
         all('.meaning-dot').forEach((el, i) => {
-          const x = parseFloat(el.style.left), y = parseFloat(el.style.top);
-          const box = one('.meaning-map').getBoundingClientRect();
-          const dx = (12 - x) * box.width / 100, dy = (53 - y) * box.height / 100;
-          const start = .1 + i * .004, end = .42 + i * .005;
-          run(el, [
-            { offset: 0, opacity: 0, transform: `translate(${dx}px,${dy}px) scale(.3)` },
-            { offset: start, opacity: 0, transform: `translate(${dx}px,${dy}px) scale(.3)` },
-            { offset: end, opacity: 1, transform: 'translate(0,0) scale(1)' },
-            { offset: 1, opacity: 1, transform: 'translate(0,0) scale(1)' }
-          ]);
+          const start = .12 + (i % 8) * .03, end = start + .22;
+          pop(el, start, end, 1.25);
         });
-        reveal(one('.map-neighborhood'), .3, .65, 0, 0);
-        all('.map-term').forEach(el => reveal(el, .48, .7, 0, 10));
+        reveal(one('.map-neighborhood'), .32, .56, 0, 0);
+        pulse(one('.map-neighborhood'), .45, .75, 'rgba(16,185,129,0.25)');
+        pop(one('.term-one'), .5, .72, 1.15);
+        pop(one('.term-two'), .6, .82, 1.15);
+        all('.map-legend > span').forEach((el, i) => pop(el, .4 + i * .12, .56 + i * .12, 1.1));
         break;
+
       case 'meaning':
-        pulse(one('.map-search-ring'), .1, .65);
-        all('.map-term').forEach((el, i) => reveal(el, .18 + i * .12, .45 + i * .12, 0, 10));
+        pop(one('.map-neighborhood'), .05, .3, 1.05);
+        pulse(one('.map-neighborhood'), .2, .6, 'rgba(16,185,129,0.3)');
+        run(one('.term-one'), [
+          { offset: 0, opacity: 0, transform: 'translate3d(-50px, -30px, 0) scale(0.8)' },
+          { offset: .15, opacity: 1, transform: 'translate3d(-50px, -30px, 0) scale(0.8)', easing: BOUNCE_EASE },
+          { offset: .55, opacity: 1, transform: 'translate3d(0, 0, 0) scale(1)' },
+          { offset: 1, opacity: 1, transform: 'translate3d(0, 0, 0) scale(1)' }
+        ]);
+        run(one('.term-two'), [
+          { offset: 0, opacity: 0, transform: 'translate3d(50px, 40px, 0) scale(0.8)' },
+          { offset: .25, opacity: 1, transform: 'translate3d(50px, 40px, 0) scale(0.8)', easing: BOUNCE_EASE },
+          { offset: .65, opacity: 1, transform: 'translate3d(0, 0, 0) scale(1)' },
+          { offset: 1, opacity: 1, transform: 'translate3d(0, 0, 0) scale(1)' }
+        ]);
+        pulse(one('.map-search-ring'), .55, .85, 'rgba(16,185,129,0.4)');
         break;
+
       case 'query':
-        reveal(one('.map-query'), .08, .27, -25, 0);
-        pulse(one('.map-search-ring'), .2, .6);
+        run(one('.map-query'), [
+          { offset: 0, opacity: 0, transform: 'translate3d(-20px, -60px, 0) scale(0.7)' },
+          { offset: .1, opacity: 0, transform: 'translate3d(-20px, -60px, 0) scale(0.7)', easing: BOUNCE_EASE },
+          { offset: .38, opacity: 1, transform: 'translate3d(0, 0, 0) scale(1.08)' },
+          { offset: .48, opacity: 1, transform: 'translate3d(0, 0, 0) scale(1)' },
+          { offset: 1, opacity: 1, transform: 'translate3d(0, 0, 0) scale(1)' }
+        ]);
+        pulse(one('.map-search-ring'), .36, .75, 'rgba(16,185,129,0.5)');
         all('.meaning-dot.related').forEach((el, i) => run(el, [
-          { offset: 0, opacity: .4 },
-          { offset: .25 + i * .005, opacity: .4 },
-          { offset: .55 + i * .004, opacity: 1 },
-          { offset: 1, opacity: 1 }
+          { offset: 0, opacity: .35, transform: 'scale(1)' },
+          { offset: .38 + (i % 6) * .02, opacity: .35, transform: 'scale(1)' },
+          { offset: .58 + (i % 6) * .02, opacity: 1, transform: 'scale(1.4)', background: '#10b981', boxShadow: '0 0 10px #10b981' },
+          { offset: .72 + (i % 6) * .02, opacity: 1, transform: 'scale(1)', background: '#10b981' },
+          { offset: 1, opacity: 1, transform: 'scale(1)', background: '#10b981' }
         ]));
         break;
+
       case 'exact':
-        reveal(one('.signal-plus'), .2, .4, 0, 0);
-        reveal(one('.signal-precise'), .28, .6, 25, 0);
+        reveal(one('.signal-card:first-child'), .08, .34, -35, 0);
+        run(one('.signal-plus'), [
+          { offset: 0, opacity: 0, transform: 'translate3d(0, -30px, 0) rotate(-180deg) scale(0.5)' },
+          { offset: .22, opacity: 0, transform: 'translate3d(0, -30px, 0) rotate(-180deg) scale(0.5)', easing: BOUNCE_EASE },
+          { offset: .46, opacity: 1, transform: 'translate3d(0, 0, 0) rotate(0deg) scale(1.2)' },
+          { offset: .56, opacity: 1, transform: 'translate3d(0, 0, 0) rotate(0deg) scale(1)' },
+          { offset: 1, opacity: 1, transform: 'translate3d(0, 0, 0) rotate(0deg) scale(1)' }
+        ]);
+        reveal(one('.signal-precise'), .36, .62, 35, 0);
+        pulse(one('.signal-precise'), .62, .88, 'rgba(16,185,129,0.3)');
         break;
+
       case 'rank':
-        all('.ranking-card').forEach((el, i) => run(el, [
-          { offset: 0, transform: `translateY(${[55, -45, 0][i]}px) rotate(${[-3, 3, -1][i]}deg)`, opacity: 1 },
-          { offset: .16, transform: `translateY(${[55, -45, 0][i]}px) rotate(${[-3, 3, -1][i]}deg)`, opacity: 1 },
-          { offset: .6, transform: 'translateY(0) rotate(0deg)', opacity: i === 2 ? .55 : 1 },
-          { offset: 1, transform: 'translateY(0) rotate(0deg)', opacity: i === 2 ? .55 : 1 }
-        ]));
+        run(one('.rank-first'), [
+          { offset: 0, transform: 'translate3d(0, 80px, 0) scale(0.95)', zIndex: 1 },
+          { offset: .15, transform: 'translate3d(0, 80px, 0) scale(0.95)', zIndex: 1, easing: BOUNCE_EASE },
+          { offset: .52, transform: 'translate3d(0, 0, 0) scale(1.03)', zIndex: 3, boxShadow: '0 0 28px rgba(16,185,129,0.35)' },
+          { offset: .65, transform: 'translate3d(0, 0, 0) scale(1)', zIndex: 3 },
+          { offset: 1, transform: 'translate3d(0, 0, 0) scale(1)', zIndex: 3 }
+        ]);
+        run(one('.rank-second'), [
+          { offset: 0, transform: 'translate3d(0, -40px, 0)' },
+          { offset: .22, transform: 'translate3d(0, -40px, 0)', easing: SPRING_EASE },
+          { offset: .55, transform: 'translate3d(0, 0, 0)' },
+          { offset: 1, transform: 'translate3d(0, 0, 0)' }
+        ]);
+        run(one('.rank-third'), [
+          { offset: 0, transform: 'translate3d(0, -60px, 0)', opacity: 1 },
+          { offset: .28, transform: 'translate3d(0, -60px, 0)', opacity: 1, easing: SPRING_EASE },
+          { offset: .62, transform: 'translate3d(0, 0, 0)', opacity: .45 },
+          { offset: 1, transform: 'translate3d(0, 0, 0)', opacity: .45 }
+        ]);
+        pop(one('.rank-muted'), .52, .72, 1.25);
         break;
+
       case 'extraction':
-        move(one('.passage-one'), one('.origin-one'), .18, .55);
-        move(one('.passage-two'), one('.origin-two'), .28, .67);
-        reveal(one('.tray-note'), .57, .75, 0, 10);
+        move(one('.passage-one'), one('.origin-one'), .16, .56);
+        move(one('.passage-two'), one('.origin-two'), .26, .66);
+        pulse(one('.extract-tray'), .58, .85, 'rgba(16,185,129,0.3)');
+        reveal(one('.tray-note'), .62, .82, 0, 10);
         break;
+
       case 'source':
-        draw(one('.source-tether'), .18, .48);
-        pulse(one('.source-proof-link'), .34, .65);
+        reveal(one('.source-proof-card'), .05, .26, 0, 20);
+        draw(one('.source-tether'), .22, .48);
+        pop(one('.source-proof-link'), .42, .68, 1.08);
+        pulse(one('.source-proof-link'), .55, .85, 'rgba(16,185,129,0.35)');
         break;
+
       case 'controls':
+        all('.control-option').forEach((el, i) => reveal(el, .06 + i * .08, .26 + i * .08, -25, 0));
         all('.control-option i').forEach((el, i) => run(el, [
-          { offset: 0, transform: 'translateX(-18px)', background: '#cbd5e1' },
-          { offset: .12 + i * .1, transform: 'translateX(-18px)', background: '#cbd5e1' },
-          { offset: .3 + i * .1, transform: 'translateX(0)', background: '#3b82f6' },
-          { offset: 1, transform: 'translateX(0)', background: '#3b82f6' }
+          { offset: 0, transform: 'translateX(-18px)', background: '#cbd5e1', boxShadow: 'none' },
+          { offset: .22 + i * .12, transform: 'translateX(-18px)', background: '#cbd5e1', boxShadow: 'none', easing: BOUNCE_EASE },
+          { offset: .38 + i * .12, transform: 'translateX(0)', background: '#2563eb', boxShadow: '0 2px 8px rgba(37,99,235,0.45)' },
+          { offset: 1, transform: 'translateX(0)', background: '#2563eb', boxShadow: '0 2px 8px rgba(37,99,235,0.45)' }
         ]));
-        reveal(one('.control-result'), .4, .67, 20, 0);
+        reveal(one('.control-result'), .58, .82, 25, 0, BOUNCE_EASE);
+        pulse(one('.control-result'), .72, .95, 'rgba(16,185,129,0.3)');
         break;
+
       case 'retrieved':
-      case 'total':
+        pop(one('.efficiency-big'), .06, .35, 1.18);
+        pulse(one('.efficiency-big'), .3, .6, 'rgba(37,99,235,0.35)');
         run(one('.token-after'), [
           { offset: 0, width: '100%' },
-          { offset: .18, width: '100%' },
-          { offset: .65, width: name === 'retrieved' ? '5%' : '70%' },
-          { offset: 1, width: name === 'retrieved' ? '5%' : '70%' }
+          { offset: .22, width: '100%', easing: SMOOTH_EASE },
+          { offset: .68, width: '5%' },
+          { offset: 1, width: '5%' }
         ]);
+        reveal(one('.metric-caveat'), .6, .82, 0, 10);
         break;
+
+      case 'total':
+        pop(one('.efficiency-big'), .06, .35, 1.18);
+        run(one('.token-after'), [
+          { offset: 0, width: '100%' },
+          { offset: .22, width: '100%', easing: SMOOTH_EASE },
+          { offset: .65, width: '70%' },
+          { offset: 1, width: '70%' }
+        ]);
+        reveal(one('.metric-caveat'), .58, .82, 0, 10);
+        break;
+
       case 'comparison':
-        all('.product-card').forEach((el, i) => reveal(el, .04 + i * .13, .28 + i * .13, 0, 18));
+        all('.product-card').forEach((el, i) => {
+          const isExa = el.classList.contains('product-exa');
+          reveal(el, .06 + i * .12, .28 + i * .12, 0, 20, isExa ? BOUNCE_EASE : SPRING_EASE);
+          if (isExa) {
+            run(el, [
+              { offset: 0, transform: 'scale(0.96)' },
+              { offset: .3, transform: 'scale(0.96)', easing: BOUNCE_EASE },
+              { offset: .6, transform: 'scale(1.04)' },
+              { offset: .75, transform: 'scale(1.02)' },
+              { offset: 1, transform: 'scale(1.02)' }
+            ]);
+            pulse(el, .55, .85, 'rgba(16,185,129,0.35)');
+          }
+        });
         break;
+
       case 'payoff':
-        draw(one('.handoff-link.first i'), .12, .3);
-        pulse(one('.handoff-model'), .25, .55);
-        draw(one('.handoff-link.second i'), .4, .58);
-        reveal(one('.handoff-answer'), .45, .68, 20, 0);
+        pop(one('.handoff-evidence'), .06, .26, 1.05);
+        draw(one('.handoff-link.first i'), .22, .38);
+        run(one('.model-symbol'), [
+          { offset: 0, transform: 'rotate(0deg) scale(0.8)' },
+          { offset: .32, transform: 'rotate(0deg) scale(0.8)', easing: BOUNCE_EASE },
+          { offset: .55, transform: 'rotate(180deg) scale(1.3)' },
+          { offset: .68, transform: 'rotate(180deg) scale(1)' },
+          { offset: 1, transform: 'rotate(180deg) scale(1)' }
+        ]);
+        pulse(one('.handoff-model'), .35, .62, 'rgba(37,99,235,0.35)');
+        draw(one('.handoff-link.second i'), .52, .68);
+        reveal(one('.handoff-answer'), .62, .85, 25, 0, BOUNCE_EASE);
+        pulse(one('.handoff-answer'), .75, .98, 'rgba(16,185,129,0.35)');
         break;
+
       case 'checks':
-        all('.evaluation-card i').forEach((el, i) => reveal(el, .12 + i * .1, .32 + i * .1, 0, 8));
+        all('.evaluation-card').forEach((el, i) => reveal(el, .06 + i * .1, .26 + i * .1, -25, 15));
+        all('.evaluation-card i').forEach((el, i) => {
+          pop(el, .22 + i * .1, .42 + i * .1, 1.35);
+          pulse(el, .32 + i * .1, .6 + i * .1, 'rgba(16,185,129,0.4)');
+        });
         break;
+
       case 'closing':
-        reveal(one('.closing-emblem'), .02, .27, 0, 16);
-        all('.closing-tag').forEach((el, i) => reveal(el, .15 + i * .1, .4 + i * .1, 0, 10));
-        reveal(one('.closing-path'), .45, .67, 0, 12);
+        pop(one('.closing-emblem'), .05, .35, 1.15);
+        pulse(one('.closing-emblem'), .25, .65, 'rgba(37,99,235,0.4)');
+        all('.closing-tag').forEach((el, i) => pop(el, .25 + i * .1, .48 + i * .1, 1.15));
+        reveal(one('.closing-path'), .55, .78, 0, 15);
         break;
     }
     return animations;
