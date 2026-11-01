@@ -202,16 +202,16 @@
       <div class="meaning-map">
         <div class="map-neighborhood"></div>
         ${dots}
-        <div class="map-topic topic-related">SaaS Retention & Churn</div>
-        <div class="map-topic topic-distant">Unrelated Web</div>
-        ${!isIndex?'<div class="map-search-ring" aria-hidden="true"></div><div class="map-query">“Enterprise B2B<br>churn playbooks”</div>':'<div class="map-input-pages"><i></i><i></i><i></i><span>Web Pages</span></div>'}
-        <div class="map-term term-one">“NRR expansion tactics”</div>
-        <div class="map-term term-two">“Customer health scores”</div>
+        <div class="map-topic topic-related">Same Meaning Neighborhood</div>
+        <div class="map-topic topic-distant">Unrelated Topics</div>
+        ${!isIndex?'<div class="map-search-ring" aria-hidden="true"></div><div class="map-query">“Budget beach trip<br>with kids”</div>':'<div class="map-input-pages"><i></i><i></i><i></i><span>Web Pages</span></div>'}
+        <div class="map-term term-one">“Affordable coastal cottage”</div>
+        <div class="map-term term-two">“Cheap family beach trip”</div>
       </div>
       <div class="map-legend">
-        ${isIndex?'<span>Continuous Crawl</span><b>→</b><span>Neural Vectorization</span><b>→</b><span>Pre-Computed Graph</span>':name==='meaning'?'<span>Learned embeddings cluster related business concepts.</span>':'<span>Neural Query Placement</span><b>→</b><span>Sub-Second Nearest Neighbor</span>'}
+        ${isIndex?'<span>1. Read Web Page</span><b>→</b><span>2. Turn into Numbers (Vector)</span><b>→</b><span>3. Pin onto Map</span>':name==='meaning'?'<span>Different words with the same meaning land as neighbors.</span>':'<span>Drop Query Pin</span><b>→</b><span>Instantly Match Closest Pages</span>'}
       </div>
-      ${caption('High-dimensional vector space · links predicting links')}
+      ${caption('A vector is a GPS coordinate for meaning · Embeddings group identical concepts together')}
     </div>`;
   }
 
@@ -219,51 +219,51 @@
     return `<div class="scene scene--exact">
       <article class="signal-card">
         <span class="signal-symbol" aria-hidden="true">≈</span>
-        ${label('Neural Semantics')}
-        <h3>Conceptual Context.</h3>
-        <p>“Enterprise AI agents”<br><span>semantically matches</span><br>“Autonomous LLM workflows”</p>
+        ${label('Vector Embeddings (Meaning)')}
+        <h3>Conceptual Understanding.</h3>
+        <p>“Automate clinical paperwork”<br><span>semantically matches</span><br>“Ambient AI medical scribe”</p>
       </article>
       <span class="signal-plus" aria-hidden="true">+</span>
       <article class="signal-card signal-precise">
         <span class="signal-symbol" aria-hidden="true">“ ”</span>
-        ${label('Lexical Precision')}
-        <h3>Exact Keyword Filters.</h3>
-        <p>ticker:"CRM" + "SOC2 Type II"<br><span>guarantees strict hits on</span><br>regulated business data.</p>
+        ${label('Keyword Precision (Exact Details)')}
+        <h3>Exact Filters.</h3>
+        <p>“HIPAA compliant” + “SOC2”<br><span>guarantees strict hits on</span><br>your exact requirements.</p>
       </article>
-      ${caption('Exa combines dense neural embeddings with an optimized BM25 engine')}
+      ${caption('Exa pairs vector understanding with exact keyword precision')}
     </div>`;
   }
 
   function rank() {
     return `<div class="scene scene--rank">
-      <div class="rank-question">Scored for Information Density & Agent Utility:</div>
+      <div class="rank-question">How Vector Matching Beats Keyword Gaming:</div>
       <div class="rank-stack">
         <article class="ranking-card rank-first">
           <b>01</b>
           <div>
-            <strong>Official Technical Documentation & Specs</strong>
-            <span>Information density: 98% · Zero ads · Verified specs</span>
+            <strong>Direct Functional Match (AI Clinical Scribe Platform)</strong>
+            <span>Nearest vector coordinate · Exactly answers the agent’s task</span>
           </div>
           ${link(EXA_SEARCH,'Docs')}
         </article>
         <article class="ranking-card rank-second">
           <b>02</b>
           <div>
-            <strong>Primary Architectural Case Studies & Benchmarks</strong>
-            <span>Information density: 92% · Real-world production data</span>
+            <strong>Peer-Reviewed Hospital Implementation Case Study</strong>
+            <span>High information density · Verified enterprise results</span>
           </div>
           ${link(FRESH_CASE,'Case Study')}
         </article>
         <article class="ranking-card rank-third">
           <b>03</b>
           <div>
-            <strong>Demoted: 40-Page SEO Affiliate Listicle</strong>
-            <span>Noise score: 89% · Sponsored affiliate bias</span>
+            <strong>Demoted: SEO Affiliate Blog (Repeats "Doctor Software" 45x)</strong>
+            <span>Distant in true vector meaning · Keyword spam filtered out</span>
           </div>
           <span class="rank-muted">Demoted</span>
         </article>
       </div>
-      ${caption('Exa ranks for factual density, not ad revenue or backlink gaming')}
+      ${caption('Exa ranks pages by true informational value, not backlink gaming or keyword repetition')}
     </div>`;
   }
 

@@ -136,44 +136,44 @@
       notes: 'Nitia specifically describes "treating the web as a database": not relying on external SERPs or slow real-time scraping, but creating an independent, AI-native crawl index updated continuously.'
     },
     {
-      chapter: '04 / UNDER THE HOOD', eyebrow: 'Pre-computation at Scale',
-      title: 'A living web index,<br><em>vectorized ahead of time.</em>',
-      body: 'Exa crawls the web continuously, extracts the core content, and pre-computes neural embeddings. When your query arrives, retrieval happens in milliseconds.',
+      chapter: '04 / HOW EXA THINKS', eyebrow: 'The Core Concept: Vectors',
+      title: 'What is a vector?<br><em>A GPS coordinate for ideas.</em>',
+      body: 'Just like latitude and longitude pinpoint any city on a physical map, a vector is a list of numbers that pinpoints where an idea lives on a map of meaning. Close coordinates mean close concepts.',
       layout: 'wide', scene: 'index',
-      sources: [source('Exa Indexing Architecture', U.architecture), source('BM25 & Neural Search', U.hybrid)],
-      notes: 'Pre-computation is key to scaling: by vectorizing billions of documents ahead of time, Exa can perform sub-second semantic retrieval without waiting for on-demand page crawling or rate-limited web requests.'
+      sources: [source('How to Build NextGen Search', U.architecture), source('Nitia Architecture Talk', U.architectureTalk)],
+      notes: 'Explain vectors without mathematical jargon. If you want a computer to understand language, you cannot just feed it letters. You turn words into coordinates—a vector. On a 2D map, two numbers tell you where a city is. In AI, a vector has hundreds of numbers describing the concept\'s topic, tone, industry, and intent.'
     },
     {
-      chapter: '04 / UNDER THE HOOD', eyebrow: 'Neural Search Paradigm',
-      title: 'Trained to predict<br><em>what link answers your question.</em>',
-      body: 'Instead of basic keyword matching, Exa\'s custom embeddings are trained on how links predict links—connecting complex concepts even when the exact phrasing differs completely.',
+      chapter: '04 / HOW EXA THINKS', eyebrow: 'Vector Embeddings',
+      title: 'Words become coordinates.<br><em>Meanings become neighbors.</em>',
+      body: '“Affordable coastal cottage” and “cheap family beach trip” share zero keywords—yet their vector coordinates land side-by-side because their meaning is identical.',
       layout: 'split', scene: 'meaning',
-      sources: [source('Exa Neural Approach', U.architecture), source('Founder Talk · Next-Link Prediction', U.engineer)],
-      notes: 'Exa\'s breakthrough insight: train neural models on web hyperlinks (next-link prediction). This enables true semantic search: querying "promising early-stage AI seed rounds" surfaces relevant announcements even if those exact words never appear in the text.'
+      sources: [source('Exa Neural Approach', U.architecture), source('Founder Talk · Embeddings', U.engineer)],
+      notes: 'Explain vector embeddings with a real, everyday example. Traditional keyword search is blind: if you search for "cheap family beach trip", it looks only for the literal words "cheap", "family", and "beach". An embedding model translates human sentences into vector coordinates based on meaning. Even if two websites use completely different words to describe the same vacation or product, their embeddings sit in the exact same neighborhood.'
     },
     {
-      chapter: '04 / UNDER THE HOOD', eyebrow: 'Multi-Modal Retrieval',
-      title: 'Search by concept,<br><em>natural prompt, or example URL.</em>',
-      body: 'Give Exa a complex query or a link to a company website. With "find similar" retrieval, Exa finds identical competitors, research papers, or talent profiles across the web.',
+      chapter: '04 / HOW EXA THINKS', eyebrow: 'Pre-Mapping the Internet',
+      title: 'Exa embeds the web<br><em>before your question arrives.</em>',
+      body: 'Exa crawls billions of web pages continuously, translates each one into an embedding coordinate, and organizes the entire internet into a living, pre-computed map of knowledge.',
       layout: 'wide', scene: 'query',
-      sources: [source('Exa Search API Reference', U.search), source('Exa Architecture Talk', U.architectureTalk)],
-      notes: 'The "find similar" capability is a massive competitive moat for business intelligence and VC deal sourcing: pass a single company URL and Exa returns 20 exact competitors based on embedding vector similarity in the knowledge graph.'
+      sources: [source('Exa Indexing Architecture', U.architecture), source('Nitia Talk · Web as a Database', U.architectureTalk)],
+      notes: 'This is how Exa achieves sub-200ms speed. You cannot read and understand the entire web in real time when someone asks a question. Exa does the heavy lifting ahead of time: continuously reading billions of web pages, generating their vector embeddings, and storing them in an organized vector database. When a search happens, the map of the web is already built and waiting.'
     },
     {
-      chapter: '04 / UNDER THE HOOD', eyebrow: 'Hybrid Retrieval',
-      title: 'Neural intuition meets<br><em>lexical precision.</em>',
-      body: 'Semantic search captures conceptual intent; custom-tuned BM25 guarantees exact keyword hits for tickers, company names, product SKUs, and exact quotes.',
+      chapter: '04 / HOW EXA THINKS', eyebrow: 'Matching the Query',
+      title: 'Drop a pin on the map.<br><em>Find the nearest neighbors.</em>',
+      body: 'When your agent asks a question, Exa turns the query into a coordinate too. Retrieval simply draws a circle and grabs the web pages sitting closest to that pin.',
       layout: 'wide', scene: 'exact',
-      sources: [source('BM25 Optimization at Exa', U.hybrid), source('Hybrid Retrieval Guide', U.ranking)],
-      notes: 'Pure vector search often fails on exact proper nouns like "Series B" or "SOC2". Exa combines dense neural embeddings with an optimized BM25 engine for enterprise-grade hybrid retrieval.'
+      sources: [source('Exa Hybrid Search', U.hybrid), source('Exa Search API', U.search)],
+      notes: 'Explain query matching as dropping a pin. Step 1: An agent asks "Show me tools that automate clinical doctor paperwork". Step 2: Exa turns that question into an embedding coordinate (a pin on the map). Step 3: Fast vector math finds the pre-indexed web pages with the closest coordinates—surfacing "ambient AI medical scribes" instantly, even though the query never used the word "scribe". If needed, exact filters (like "HIPAA compliant") can be added for precision.'
     },
     {
-      chapter: '04 / UNDER THE HOOD', eyebrow: 'Relevance Re-Ranking',
-      title: 'Ranked for agent utility,<br><em>not clickbait SEO.</em>',
-      body: 'Candidate documents are scored and ranked for information density, factual depth, and relevance to the task—bringing the highest-signal sources straight to the top.',
+      chapter: '04 / HOW EXA THINKS', eyebrow: 'The Search Superpower',
+      title: 'Search by what it does,<br><em>not just what it repeats.</em>',
+      body: 'Legacy search rewards SEO blogs that repeat keywords 50 times. Vector search rewards pages whose true meaning actually answers your agent\'s task.',
       layout: 'split', scene: 'rank',
-      sources: [source('Exa Search API Docs', U.search), source('Exa Ranking Systems', U.architecture)],
-      notes: 'Traditional PageRank is susceptible to SEO link farms. Exa\'s custom re-ranker evaluates actual semantic relevance and content quality for agent tasks, prioritizing authoritative documentation and deep reports.'
+      sources: [source('Exa Ranking Systems', U.architecture), source('Fresh Consulting Analysis', U.freshCaseStudy)],
+      notes: 'Bring it back to why this matters to the user and business. Anyone can game traditional search engines by stuffing keywords into an article. But with vector embeddings, a document\'s position on the map is determined by its deep semantic content, not keyword tricks. Exa brings genuinely useful, high-signal technical documentation and solutions to the top for autonomous agents.'
     },
     {
       chapter: '05 / USEFUL EVIDENCE', eyebrow: 'The Surgical Context Problem',
