@@ -11,7 +11,8 @@
   const DEFAULT_SERP_KEY = '620b4867764d47a5f808e64ebf96c19260fe6d7c37d1bb79e6dc209b12c37009';
 
   let presets = {};
-  let currentPresetId = 'aws-leads';
+  let currentPresetId = 'riyadh-unicorns';
+  let currentExaView = 'highlights';
   let isExecuting = false;
 
   const $ = id => document.getElementById(id);
@@ -29,6 +30,12 @@
   // Initialize
   async function init() {
     try {
+      if (window.location.hash.includes('json')) {
+        currentExaView = 'json';
+        if ($('viewJsonBtn')) $('viewJsonBtn').classList.add('active');
+        if ($('viewHighlightsBtn')) $('viewHighlightsBtn').classList.remove('active');
+      }
+
       const res = await fetch('data/presets.json?v=' + Date.now());
       presets = await res.json();
       loadScenario(currentPresetId);
@@ -115,9 +122,33 @@
       const card = document.createElement('article');
       card.className = 'card-exa';
 
-      const highlightsHtml = (item.highlights || []).map(h => 
-        `<p class="exa-quote-item">“${escapeHtml(h)}”</p>`
-      ).join('');
+      let contentBlockHtml = '';
+      if (currentExaView === 'json') {
+        const jsonContent = item.structured || {
+          entity: item.company || 'Verified Entity',
+          title: item.title,
+          url: item.url,
+          extracted_highlights: item.highlights
+        };
+        contentBlockHtml = `
+          <div class="exa-json-block">
+            <div class="json-header">
+              <span class="json-tag">⚡ AGENT STRUCTURED SCHEMA</span>
+              <span class="json-format">WEBSET JSON</span>
+            </div>
+            <pre class="json-code"><code>${escapeHtml(JSON.stringify(jsonContent, null, 2))}</code></pre>
+          </div>
+        `;
+      } else {
+        const highlightsHtml = (item.highlights || []).map(h => 
+          `<p class="exa-quote-item">“${escapeHtml(h)}”</p>`
+        ).join('');
+        contentBlockHtml = `
+          <div class="exa-quote-block">
+            ${highlightsHtml}
+          </div>
+        `;
+      }
 
       card.innerHTML = `
         <div class="card-exa-head">
@@ -125,9 +156,7 @@
           <span class="exa-date-tag">${escapeHtml(item.date || 'Live Index')}</span>
         </div>
         <h4 class="card-exa-title">${escapeHtml(item.title)}</h4>
-        <div class="exa-quote-block">
-          ${highlightsHtml}
-        </div>
+        ${contentBlockHtml}
         <div class="card-exa-footer">
           <a class="exa-link" href="${item.url}" target="_blank" rel="noopener noreferrer">
             ${cleanUrl(item.url)} ↗
@@ -289,7 +318,7 @@
     } catch (err) {
       clearInterval(timerInterval);
       console.warn('Real Exa fetch failed, falling back to verified scenario preset', err);
-      const presetExa = presets[currentPresetId]?.exa || presets['aws-leads'].exa;
+      const presetExa = presets[currentPresetId]?.exa || presets['riyadh-unicorns'].exa;
       return {
         ...presetExa,
         latency: Math.max(180, Math.round(performance.now() - startTime))
@@ -320,7 +349,7 @@
 
         if (elapsed >= targetLatency) {
           clearInterval(timerInterval);
-          const legacyData = presets[currentPresetId]?.legacy || presets['aws-leads'].legacy;
+          const legacyData = presets[currentPresetId]?.legacy || presets['riyadh-unicorns'].legacy;
           resolve({
             ...legacyData,
             latency: targetLatency
@@ -387,6 +416,22 @@
     };
     if ($('openGoogleBtn')) $('openGoogleBtn').addEventListener('click', openGoogle);
     if ($('paneGoogleLink')) $('paneGoogleLink').addEventListener('click', openGoogle);
+
+    // Exa View Toggle (Highlights vs Structured JSON)
+    if ($('viewHighlightsBtn') && $('viewJsonBtn')) {
+      $('viewHighlightsBtn').addEventListener('click', () => {
+        currentExaView = 'highlights';
+        $('viewHighlightsBtn').classList.add('active');
+        $('viewJsonBtn').classList.remove('active');
+        if (presets[currentPresetId]) renderExa(presets[currentPresetId].exa);
+      });
+      $('viewJsonBtn').addEventListener('click', () => {
+        currentExaView = 'json';
+        $('viewJsonBtn').classList.add('active');
+        $('viewHighlightsBtn').classList.remove('active');
+        if (presets[currentPresetId]) renderExa(presets[currentPresetId].exa);
+      });
+    }
 
     // Save Keys
     if ($('saveKeyBtn')) {
