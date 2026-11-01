@@ -1,6 +1,6 @@
 /* ==========================================================================
-   Exa vs Google — Live AI Agent Benchmark Cockpit Controller
-   Cyber Observability Engine with Real-Time Stopwatch & Live Exa Search
+   Exa vs Google — AI Agent Search Engine Benchmark Controller
+   Cyber Observability Live Comparison Engine
    ========================================================================== */
 
 (() => {
@@ -12,7 +12,6 @@
 
   let presets = {};
   let currentPresetId = 'aws-leads';
-  let isLiveMode = true;
   let isExecuting = false;
 
   const $ = id => document.getElementById(id);
@@ -21,52 +20,31 @@
   const getExaKey = () => localStorage.getItem('demo_exa_api_key') || DEFAULT_EXA_KEY;
   const getSerpKey = () => localStorage.getItem('demo_serp_api_key') || DEFAULT_SERP_KEY;
 
-  const saveKeys = (exa, serp, live) => {
+  const saveKeys = (exa, serp) => {
     localStorage.setItem('demo_exa_api_key', exa.trim());
     localStorage.setItem('demo_serp_api_key', serp.trim());
-    localStorage.setItem('demo_live_mode', live ? 'true' : 'false');
-    isLiveMode = live;
-    updateStatusIndicator();
+    alert('API keys saved to browser storage!');
   };
-
-  function updateStatusIndicator() {
-    const pill = $('livePill');
-    const label = $('liveStatusLabel');
-    const hasKey = !!getExaKey();
-
-    if (hasKey && isLiveMode) {
-      pill.style.background = 'rgba(16, 185, 129, 0.12)';
-      pill.style.borderColor = 'rgba(16, 185, 129, 0.35)';
-      pill.style.color = '#34d399';
-      label.textContent = 'EXA LIVE API ACTIVE (PAID TIER)';
-    } else {
-      pill.style.background = 'rgba(245, 158, 11, 0.12)';
-      pill.style.borderColor = 'rgba(245, 158, 11, 0.35)';
-      pill.style.color = '#fbbf24';
-      label.textContent = 'VERIFIED RESILIENCE CACHE 🛡️';
-    }
-  }
 
   // Initialize
   async function init() {
     try {
       const res = await fetch('data/presets.json?v=' + Date.now());
       presets = await res.json();
-      loadMission(currentPresetId);
+      loadScenario(currentPresetId);
     } catch (err) {
       console.error('Failed to load presets, using default fallback', err);
     }
-    updateStatusIndicator();
   }
 
-  // Load Mission Preset
-  function loadMission(presetId) {
+  // Load Scenario Preset
+  function loadScenario(presetId) {
     if (!presets[presetId]) return;
     currentPresetId = presetId;
 
-    // Update active card
-    document.querySelectorAll('.mission-card').forEach(card => {
-      card.classList.toggle('active', card.dataset.preset === presetId);
+    // Update active chip
+    document.querySelectorAll('.scenario-chip').forEach(chip => {
+      chip.classList.toggle('active', chip.dataset.preset === presetId);
     });
 
     const data = presets[presetId];
@@ -76,18 +54,17 @@
     renderData(data);
   }
 
-  // Render Engine Data
+  // Render Data into Columns
   function renderData(data) {
     renderLegacy(data.legacy);
     renderExa(data.exa);
     renderScorecard(data.legacy, data.exa);
   }
 
-  // Render Legacy Google Column
+  // Render Google / Legacy Column
   function renderLegacy(legacy) {
     $('legacyTokens').textContent = `${legacy.tokens.toLocaleString()} Tokens`;
     $('legacyLatency').textContent = `${legacy.latency}ms`;
-    $('legacyAlertText').textContent = `${legacy.noiseRatio}% NOISE RATIO · ${legacy.adsCount || 2} SPONSORED ADS · 40KB COOKIE & DOM FLUFF`;
 
     const stream = $('legacyStream');
     stream.innerHTML = '';
@@ -120,118 +97,71 @@
     $('legacyVerdictText').textContent = synth.description || '';
   }
 
-  // Render Exa Column
+  // Render Exa Neural Column
   function renderExa(exa) {
     const cutPercent = Math.round((1 - (exa.tokens / (presets[currentPresetId]?.legacy.tokens || 48000))) * 100);
     $('exaTokens').textContent = `${exa.tokens.toLocaleString()} Tokens`;
     $('exaLatency').textContent = `${exa.latency}ms (${cutPercent}% Cut)`;
-    $('exaAlertText').textContent = `${exa.signalRatio || 98}% PURE SIGNAL · SURGICAL DYNAMIC HIGHLIGHTS · ZERO SCRAPING`;
 
     const stream = $('exaStream');
     stream.innerHTML = '';
 
-    // If Webset Structured View
-    if (exa.isWebset) {
-      renderWebsetTable(exa.results, stream);
-    } else {
-      (exa.results || []).forEach(item => {
-        const card = document.createElement('article');
-        card.className = 'card-exa';
+    (exa.results || []).forEach(item => {
+      const card = document.createElement('article');
+      card.className = 'card-exa';
 
-        const highlightsHtml = (item.highlights || []).map(h => 
-          `<p class="exa-quote-item">“${escapeHtml(h)}”</p>`
-        ).join('');
+      const highlightsHtml = (item.highlights || []).map(h => 
+        `<p class="exa-quote-item">“${escapeHtml(h)}”</p>`
+      ).join('');
 
-        card.innerHTML = `
-          <div class="card-exa-head">
-            <span class="exa-entity-pill">${escapeHtml(item.company || item.category || 'Verified Account')}</span>
-            <span class="exa-date-tag">${escapeHtml(item.publishedDate || 'Live Index')}</span>
-          </div>
-          <h4 class="card-exa-title">${escapeHtml(item.title)}</h4>
-          <div class="exa-quote-block">
-            ${highlightsHtml}
-          </div>
-          <div class="card-exa-footer">
-            <a class="exa-link" href="${item.url}" target="_blank" rel="noopener noreferrer">
-              ${cleanUrl(item.url)} ↗
-            </a>
-            <span class="exa-token-tag">⚡ ${(item.tokens || 350).toLocaleString()} tokens</span>
-          </div>
-        `;
-        stream.appendChild(card);
-      });
-    }
+      card.innerHTML = `
+        <div class="card-exa-head">
+          <span class="exa-entity-pill">${escapeHtml(item.company || item.category || 'Verified Source')}</span>
+          <span class="exa-date-tag">${escapeHtml(item.date || 'Live Index')}</span>
+        </div>
+        <h4 class="card-exa-title">${escapeHtml(item.title)}</h4>
+        <div class="exa-quote-block">
+          ${highlightsHtml}
+        </div>
+        <div class="card-exa-footer">
+          <a class="exa-link" href="${item.url}" target="_blank" rel="noopener noreferrer">
+            ${cleanUrl(item.url)} ↗
+          </a>
+          <span class="exa-token-tag">⚡ ${(item.tokens || 350).toLocaleString()} tokens</span>
+        </div>
+      `;
+      stream.appendChild(card);
+    });
 
     // Downstream Verdict
     const synth = exa.agentSynthesis || {};
-    $('exaVerdictBadge').textContent = synth.badge || '✓ 3 VERIFIED LEADS EXTRACTED';
+    $('exaVerdictBadge').textContent = synth.badge || '✅ VERIFIED LEADS EXTRACTED';
     $('exaVerdictText').textContent = synth.description || '';
   }
 
-  // Webset structured table renderer
-  function renderWebsetTable(items, container) {
-    const wrap = document.createElement('div');
-    wrap.className = 'webset-table-wrap';
-
-    const rows = (items || []).map(item => `
-      <tr>
-        <td><strong>${escapeHtml(item.entityName)}</strong></td>
-        <td>${escapeHtml(item.persona)}</td>
-        <td><span class="soc-badge">${escapeHtml(item.soc2Status)}</span></td>
-        <td><small>${escapeHtml(item.deployment)}</small></td>
-        <td><a class="exa-link" href="${item.url}" target="_blank">Trust Portal ↗</a></td>
-      </tr>
-      <tr>
-        <td colspan="5" style="background:rgba(16,185,129,0.05);padding:10px 14px;border-bottom:2px solid rgba(16,185,129,0.3)">
-          <p class="exa-quote-item" style="font-size:12px;color:#a7f3d0">
-            “${escapeHtml((item.highlights || [])[0] || '')}”
-          </p>
-        </td>
-      </tr>
-    `).join('');
-
-    wrap.innerHTML = `
-      <table class="webset-table">
-        <thead>
-          <tr>
-            <th>Company / Entity</th>
-            <th>Agent Persona</th>
-            <th>Security Audit</th>
-            <th>Deployment</th>
-            <th>Verification</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rows}
-        </tbody>
-      </table>
-    `;
-    container.appendChild(wrap);
-  }
-
-  // Render bottom scorecard
+  // Render Bottom Scorecard
   function renderScorecard(legacy, exa) {
     // Tokens
     $('statLegacyTok').textContent = `${(legacy.tokens / 1000).toFixed(1)}k`;
     $('statExaTok').textContent = `${(exa.tokens / 1000).toFixed(1)}k tokens`;
     const tokenCut = Math.round((1 - (exa.tokens / legacy.tokens)) * 100);
-    $('statTokPercent').textContent = `✂ ${tokenCut}% LESS CONTEXT WASTE`;
+    $('statTokPercent').textContent = `✂ ${tokenCut}% Less Context Bloat`;
 
     // Latency
     $('statLegacyLat').textContent = `${legacy.latency}ms`;
     $('statExaLat').textContent = `${exa.latency}ms`;
     const speedup = Math.max(2, Math.round(legacy.latency / exa.latency));
-    $('statLatSpeedup').textContent = `⚡ ${speedup}x FASTER AGENT CYCLE`;
+    $('statLatSpeedup').textContent = `⚡ ${speedup}x Faster Execution Cycle`;
 
     // Cost
     $('statLegacyCost').textContent = `$${(legacy.costPer100k || 14475).toLocaleString()}`;
     $('statExaCost').textContent = `$${(exa.costPer100k || 342).toLocaleString()}`;
     const savings = (legacy.costPer100k || 14475) - (exa.costPer100k || 342);
-    $('statCostSaved').textContent = `💰 $${savings.toLocaleString()} ANNUAL SAVINGS`;
+    $('statCostSaved').textContent = `💰 $${savings.toLocaleString()} Annual LLM Savings`;
   }
 
   // ==========================================================================
-  // Live Benchmark Race
+  // Live Side-by-Side Comparison Race
   // ==========================================================================
   async function runLiveBenchmark() {
     if (isExecuting) return;
@@ -243,7 +173,7 @@
     const runBtn = $('runBtn');
     const runBtnLabel = $('runBtnLabel');
     runBtn.disabled = true;
-    runBtnLabel.textContent = 'EXECUTING DUAL BENCHMARK... ⚡';
+    runBtnLabel.textContent = 'Comparing Live Engines... ⚡';
 
     // Show live progress bars
     $('legacyProgress').hidden = false;
@@ -284,7 +214,7 @@
     // Reset button
     isExecuting = false;
     runBtn.disabled = false;
-    runBtnLabel.textContent = 'RUN LIVE BENCHMARK';
+    runBtnLabel.textContent = 'Run Live Comparison ⚡';
   }
 
   // Execute real Exa API query
@@ -331,12 +261,10 @@
       const results = (data.results || []).map(r => ({
         title: r.title || 'Verified Neural Match',
         url: r.url,
-        category: 'Live Neural Match',
-        publishedDate: r.publishedDate ? r.publishedDate.slice(0, 10) : 'Live Index',
         company: cleanDomain(r.url),
+        date: r.publishedDate ? r.publishedDate.slice(0, 10) : 'Live Index',
         highlights: r.highlights || [r.text ? r.text.slice(0, 220) + '...' : 'Direct semantic evidence.'],
-        tokens: Math.round(((r.highlights ? r.highlights.join(' ') : (r.text || '')).length) / 4) + 60,
-        verified: true
+        tokens: Math.round(((r.highlights ? r.highlights.join(' ') : (r.text || '')).length) / 4) + 60
       }));
 
       const totalTokens = results.reduce((acc, cur) => acc + cur.tokens, 0) || 1080;
@@ -348,7 +276,7 @@
         signalRatio: 98,
         results: results,
         agentSynthesis: {
-          badge: `✓ ${results.length} VERIFIED SOURCES INGESTED`,
+          badge: `✅ ${results.length} Verified Sources Ingested`,
           description: `Real-time Exa search completed in ${elapsed}ms. Agent parsed ${totalTokens} tokens directly into structured action without running web scraping bots or ingesting HTML junk.`
         }
       };
@@ -432,10 +360,10 @@
   window.addEventListener('DOMContentLoaded', () => {
     init();
 
-    // Mission card selection
-    document.querySelectorAll('.mission-card').forEach(card => {
-      card.addEventListener('click', () => {
-        loadMission(card.dataset.preset);
+    // Scenario chip selection
+    document.querySelectorAll('.scenario-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        loadScenario(chip.dataset.preset);
       });
     });
 
@@ -445,28 +373,12 @@
       if (e.key === 'Enter') runLiveBenchmark();
     });
 
-    // Settings Modal
-    const modal = $('settingsModal');
-    $('settingsBtn').addEventListener('click', () => {
-      $('exaKeyInput').value = getExaKey();
-      $('serpKeyInput').value = getSerpKey();
-      $('liveToggle').checked = isLiveMode;
-      modal.hidden = false;
-    });
-
-    $('closeSettingsBtn').addEventListener('click', () => {
-      modal.hidden = true;
-    });
-
-    $('saveSettingsBtn').addEventListener('click', () => {
-      saveKeys($('exaKeyInput').value, $('serpKeyInput').value, $('liveToggle').checked);
-      modal.hidden = true;
-    });
-
-    $('livePill').addEventListener('click', () => {
-      isLiveMode = !isLiveMode;
-      updateStatusIndicator();
-    });
+    // Save Keys
+    if ($('saveKeyBtn')) {
+      $('saveKeyBtn').addEventListener('click', () => {
+        saveKeys($('exaKeyInput').value, $('serpKeyInput').value);
+      });
+    }
   });
 
 })();

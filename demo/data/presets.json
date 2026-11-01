@@ -2,167 +2,155 @@
   "aws-leads": {
     "id": "aws-leads",
     "title": "AWS Migration Sales Leads",
-    "badge": "🎯 Datadog Prospecting",
-    "query": "Tech companies recently migrating Kubernetes infrastructure to AWS",
-    "objective": "Scan the public web for high-growth tech companies migrating core infrastructure to AWS EKS to generate warm, qualified enterprise sales leads for Datadog APM.",
+    "kicker": "Datadog Prospecting",
+    "query": "Fast-growing tech companies announcing Kubernetes migration to AWS seeking enterprise observability",
+    "objective": "Identify high-growth tech companies migrating core infrastructure to AWS EKS to generate high-intent enterprise pipeline for Datadog sales.",
     "legacy": {
       "latency": 3840,
       "tokens": 48250,
       "costPer100k": 14475,
       "noiseRatio": 94,
-      "signalRatio": 6,
       "adsCount": 2,
       "results": [
         {
           "type": "ad",
-          "title": "Ad · CloudZero - Optimize AWS Kubernetes Cloud Cost",
-          "url": "https://www.google.com/aclk?sa=l&ai=DChcSEwj...",
-          "snippet": "Cut your AWS cloud spend by 35%. Request a demo today. Certified AWS Advanced Tier Services Partner. $14.20/click paid bidding auction.",
           "badge": "Sponsored Ad · $14.20 CPC",
+          "title": "CloudZero - Optimize AWS Kubernetes Cloud Cost",
+          "snippet": "Cut your AWS cloud spend by 35%. Request a demo today. Certified AWS Advanced Tier Services Partner. $14.20 per click keyword bidding auction.",
+          "url": "https://www.google.com/aclk?sa=l&ai=DChcSEwj...",
           "tokens": 840
         },
         {
           "type": "outdated",
+          "badge": "Outdated · Dec 2017 (9 Years Old)",
           "title": "Atlassian moved its entire infrastructure to AWS for cloud-native customers",
-          "url": "https://www.ciodive.com/news/atlassian-moved-its-entire-infrastructure-to-aws/519510/",
           "snippet": "Since December 2017, Atlassian has run completely on Amazon Web Services because of existing microservices... (Article published 9 years ago).",
-          "badge": "Outdated · Published Dec 2017 (9 Yrs Old)",
+          "url": "https://www.ciodive.com/news/atlassian-moved-its-entire-infrastructure-to-aws/519510/",
           "tokens": 15400
         },
         {
           "type": "wrong",
-          "title": "Migrating Kubernetes to NeevCloud FROM AWS Infrastructure",
-          "url": "https://www.linkedin.com/posts/black-potato-systems_why-we-migrated-our-kubernetes-infrastructure",
-          "snippet": "Why our engineering team migrated our Kubernetes cluster away from AWS to NeevCloud. (Exact opposite of the user prompt intent).",
           "badge": "Opposite Match · Migrated Away from AWS",
+          "title": "Migrating Kubernetes to NeevCloud FROM AWS Infrastructure",
+          "snippet": "Why our engineering team migrated our Kubernetes cluster away from AWS to NeevCloud. (Exact opposite of what the agent requested).",
+          "url": "https://www.linkedin.com/posts/black-potato-systems_why-we-migrated-our-kubernetes-infrastructure",
           "tokens": 11200
         },
         {
           "type": "seo",
+          "badge": "SEO Category Page · 40KB Boilerplate",
           "title": "Category: Amazon Elastic Kubernetes Service Blogs",
-          "url": "https://aws.amazon.com/blogs/migration-and-modernization/category/compute/amazon-kubernetes-service/",
           "snippet": "Introducing TechShift, the AWS series dedicated to software businesses looking to modernize. Sign up for our monthly AWS newsletter...",
-          "badge": "Generic Category Page · 40KB Boilerplate",
+          "url": "https://aws.amazon.com/blogs/migration-and-modernization/category/compute/amazon-kubernetes-service/",
           "tokens": 12800
         },
         {
           "type": "redirect",
-          "title": "Redirect: https://www.google.com/goto?url=CAEShgEB6zswFRtGkWZNXN...",
-          "url": "https://www.google.com/goto?url=CAEShgEB6zswFRtGkWZNXN27quKChc0Vdh3ebfo8yw30wpTOqL6tr8kATQGTka8iLRnI5sfl5WLvYmkz0Dkq5QoYpKSL3ZIrPld9nw8lGDEEmHZCsiDp7uTd3M1MP13gcadxuvX7_LxaUYOMKC3rsaO7CyS-FddVs5B25hFve3VnXp-PPTl_pD4QxA",
-          "snippet": "Obfuscated redirect tracking token. Autonomous crawler cannot resolve destination without executing headless browser JavaScript.",
           "badge": "Tracking Redirect · Unparseable URL",
+          "title": "Redirect: https://www.google.com/goto?url=CAEShgEB6zswFRtGkWZNXN...",
+          "snippet": "Obfuscated redirect tracking token. Autonomous crawler cannot resolve destination without executing headless browser JavaScript.",
+          "url": "https://www.google.com/goto?url=CAEShgEB6zswFRt...",
           "tokens": 8010
         }
       ],
       "agentSynthesis": {
-        "verdict": "FAILED / BLOWN CONTEXT",
         "badge": "❌ Context Window Overflow",
-        "description": "Agent consumed 48,250 tokens across 5 scraped pages. The retrieved context contains zero recent sales leads: 1 paid ad ($14 CPC), 1 outdated article from 2017, 1 company migrating AWAY from AWS, and an obfuscated Google redirect link. The agent cannot take action without hallucinating."
+        "description": "Agent consumed 48,250 tokens across 5 scraped pages. Context contains zero recent leads: 1 paid ad ($14 CPC), 1 outdated article from 2017, and a company migrating AWAY from AWS. Agent cannot generate outreach without hallucinating."
       }
     },
     "exa": {
       "latency": 241,
       "tokens": 1140,
       "costPer100k": 342,
-      "noiseRatio": 2,
       "signalRatio": 98,
       "results": [
         {
+          "company": "rabbit Inc. (AI Hardware)",
+          "date": "2024 Case Study",
           "title": "Cutting AI Service Costs Using Amazon Bedrock with rabbit",
           "url": "https://aws.amazon.com/solutions/case-studies/rabbit-migration-case-study/",
-          "category": "High-Intent Lead",
-          "publishedDate": "2024 Case Study",
-          "company": "rabbit Inc. (AI Hardware)",
           "highlights": [
             "In 2024, technology startup rabbit launched a device powered by generative AI... rabbit decided to migrate to containerized infrastructure on Amazon Web Services (AWS) to support hypergrowth.",
             "The companies migrated rabbit's infrastructure to Amazon Elastic Kubernetes Service (Amazon EKS) in 2 months with Caylent to maintain high performance across 100,000+ live devices."
           ],
-          "tokens": 360,
-          "verified": true
+          "tokens": 360
         },
         {
+          "company": "Momenta (Autonomous Driving)",
+          "date": "Production Migration",
           "title": "Momenta Migrates to Amazon EKS for Automatic Cluster Scalability and Upgrades",
           "url": "https://aws.amazon.com/solutions/case-studies/momenta-eks/",
-          "category": "High-Intent Lead",
-          "publishedDate": "Production Migration",
-          "company": "Momenta (Autonomous Driving)",
           "highlights": [
             "Momenta uses machine learning to create the 'brain' for autonomous driving. Facing scaling and cost challenges on self-managed Kubernetes, Momenta migrated its Kubernetes clusters to Amazon EKS.",
             "By taking advantage of Amazon EKS, Momenta completed the entire migration from self-managed Kubernetes cluster to AWS in less than two months."
           ],
-          "tokens": 390,
-          "verified": true
+          "tokens": 390
         },
         {
+          "company": "Remine (Real Estate AI)",
+          "date": "Verified Lead",
           "title": "Remine cuts cloud costs significantly and migrates to EKS - Spectro Cloud",
           "url": "https://www.spectrocloud.com/customers/remine",
-          "category": "High-Intent Lead",
-          "publishedDate": "Verified Lead",
-          "company": "Remine (Real Estate AI)",
           "highlights": [
             "Rodney Cobb, Remine's Director of Platform Engineering, decided that a migration from EC2 to AWS's managed K8s offering, EKS, would ease the burden on platform engineering and cut cloud costs by 30%.",
             "Palette helped speed Remine's EC2 to EKS migration timeframe by 5x, allowing Cobb's team to model their Kubernetes stack and scale resources in EKS with zero downtime."
           ],
-          "tokens": 390,
-          "verified": true
+          "tokens": 390
         }
       ],
       "agentSynthesis": {
-        "verdict": "AUTOMATED ACTION COMPLETE",
-        "badge": "✓ 3 Verified Enterprise Leads Generated",
-        "description": "Agent ingested 1,140 tokens in 241ms and extracted 3 verified migration accounts: 1) rabbit (AI Hardware, 100k+ devices, Caylent partner), 2) Momenta (Autonomous Driving, EKS cluster migration), 3) Remine (Director of Platform Eng Rodney Cobb, 30% cost target). Generated personalized outreach draft with 100% verified citations."
+        "badge": "✅ 3 Verified Accounts Extracted",
+        "description": "Agent ingested 1,140 tokens in 241ms and extracted 3 verified accounts: rabbit (AI Hardware), Momenta (Autonomous Driving), and Remine (Platform Director Rodney Cobb, 30% cost target). Generated personalized outreach with verified citations."
       }
     }
   },
   "competitor-intel": {
     "id": "competitor-intel",
-    "title": "Datadog vs Splunk & Dynatrace",
-    "badge": "⚔️ Competitive Intel",
-    "query": "Why enterprise DevOps teams switch from Splunk to Datadog",
-    "objective": "Extract exact engineering postmortems and executive quotes detailing why DevOps teams replaced Splunk with Datadog for log management and observability.",
+    "title": "Why Leave Splunk for Datadog",
+    "kicker": "Competitive Battlecard",
+    "query": "Why engineering teams switch from Splunk to Datadog real migration postmortems and cost comparison",
+    "objective": "Extract exact engineering postmortems, ROI metrics, and executive quotes detailing why DevOps teams replaced Splunk with Datadog for unified observability.",
     "legacy": {
       "latency": 4120,
       "tokens": 52100,
       "costPer100k": 15630,
       "noiseRatio": 95,
-      "signalRatio": 5,
       "adsCount": 2,
       "results": [
         {
           "type": "ad",
-          "title": "Ad · Dynatrace vs Splunk vs Datadog Enterprise APM Review",
-          "url": "https://www.google.com/aclk?sa=l&ai=DChcSEwj7...",
-          "snippet": "Compare leading observability platforms. Download the 2024 Gartner Magic Quadrant. $18.50 paid bidding auction.",
           "badge": "Sponsored Ad · $18.50 CPC",
+          "title": "Dynatrace vs Splunk vs Datadog Enterprise APM Review",
+          "snippet": "Compare leading observability platforms. Download the 2024 Gartner Magic Quadrant. $18.50 paid bidding auction.",
+          "url": "https://www.google.com/aclk?sa=l&ai=DChcSEwj7...",
           "tokens": 890
         },
         {
           "type": "seo",
+          "badge": "SEO Comparison Farm · 38KB HTML Fluff",
           "title": "Datadog vs Splunk: 2024 Comprehensive Comparison (Pros & Cons)",
-          "url": "https://www.techtarget.com/searchitoperations/tip/Datadog-vs-Splunk/",
           "snippet": "Both Datadog and Splunk are popular enterprise monitoring solutions. In this article we evaluate key features, pricing tiers, and licensing models...",
-          "badge": "SEO Affiliate Guide · 38KB HTML Fluff",
+          "url": "https://www.techtarget.com/searchitoperations/tip/Datadog-vs-Splunk/",
           "tokens": 16400
         },
         {
           "type": "seo",
-          "title": "15 Best Observability Platforms of 2023 - Software Advice",
-          "url": "https://www.softwareadvice.com/observability-tools-comparison/",
-          "snippet": "Disclosure: We may receive compensation from companies whose products we review. Click 'Accept Cookies' to view full comparison tables...",
           "badge": "Affiliate Monetization Wall",
+          "title": "15 Best Observability Platforms of 2023 - Software Advice",
+          "snippet": "Disclosure: We may receive compensation from companies whose products we review. Click 'Accept Cookies' to view full comparison tables...",
+          "url": "https://www.softwareadvice.com/observability-tools-comparison/",
           "tokens": 18200
         },
         {
           "type": "forum",
-          "title": "Reddit r/devops: Splunk renewal came in at $420k/yr, what are alternatives?",
-          "url": "https://www.reddit.com/r/devops/comments/splunk_renewal_insane/",
-          "snippet": "84 comments · Our sales rep won't budge on ingest pricing. Looking at Grafana Loki or maybe Datadog. Any real-world migration experiences?",
           "badge": "Unstructured Forum Rants",
+          "title": "Reddit r/devops: Splunk renewal came in at $420k/yr, what are alternatives?",
+          "snippet": "84 comments · Our sales rep won't budge on ingest pricing. Looking at Grafana Loki or maybe Datadog. Any real-world migration experiences?",
+          "url": "https://www.reddit.com/r/devops/comments/splunk_renewal_insane/",
           "tokens": 16610
         }
       ],
       "agentSynthesis": {
-        "verdict": "LOW SIGNAL / GENERIC SUMMARY",
         "badge": "⚠️ High Noise & Boilerplate",
         "description": "Agent spent 52,100 tokens reading affiliate reviews, cookie consent prompts, and Reddit threads. Could only output generic marketing bullet points ('both tools are good for logs'). Zero verified enterprise metrics or customer engineering names extracted."
       }
@@ -171,144 +159,131 @@
       "latency": 239,
       "tokens": 1050,
       "costPer100k": 315,
-      "noiseRatio": 1,
       "signalRatio": 99,
       "results": [
         {
+          "company": "Contentful (Enterprise CMS)",
+          "date": "Verified Case Study",
           "title": "Contentful Replaces Splunk with Datadog for 9 TB/Day Log Telemetry",
           "url": "https://www.datadoghq.com/case-studies/contentful/",
-          "category": "Verified Customer Intel",
-          "publishedDate": "Verified Case Study",
-          "company": "Contentful (Enterprise CMS)",
           "highlights": [
             "Logs lived in Splunk isolated from observability context. Michael Pearce, Senior Engineering Manager: 'People would put more logs into Splunk, leading to bloat and lengthy queries.' With contract renewal approaching, Contentful migrated logs to Datadog.",
             "The team successfully moved over 9 TB of daily log telemetry in six weeks using Datadog Flex tier, retiring Splunk and unifying logs with metrics and traces."
           ],
-          "tokens": 350,
-          "verified": true
+          "tokens": 350
         },
         {
+          "company": "Lululemon / Ajay Chava",
+          "date": "Executive Interview",
           "title": "Lululemon Infrastructure Modernization: Consolidating to Datadog",
           "url": "https://techbullion.com/there-is-now-a-special-tool-preventing-incidents-in-your-cloud-native-infrastructure-a-description-of-datadog-from-ajay-chava/",
-          "category": "Verified Customer Intel",
-          "publishedDate": "Executive Interview",
-          "company": "Lululemon / Ajay Chava",
           "highlights": [
             "Ajay Chava led migration from fragmented Prometheus & Splunk setups to Datadog's unified platform for metrics, traces, and spans. Reduced operational overhead by 30% and improved incident response times by 40%.",
             "'Datadog allowed us to bring our metrics, traces, and spans together on one platform... helped us reduce downtime and gave us better control over our costs.'"
           ],
-          "tokens": 360,
-          "verified": true
+          "tokens": 360
         },
         {
+          "company": "EverOps Cloud Advisory",
+          "date": "Technical Analysis",
           "title": "Migrating from Splunk to Datadog: Benefits and Architecture | EverOps",
           "url": "https://www.everops.com/migrating-from-splunk-to-datadog-benefits-and-challenges/",
-          "category": "Engineering Architecture",
-          "publishedDate": "Technical Analysis",
-          "company": "EverOps Cloud Advisory",
           "highlights": [
             "Unified view across 500+ cloud integrations, real-time analytics, and flexible usage pricing compared to Splunk's rigid index tier licensing.",
             "Key driver: Breaking down telemetry silos where security and DevOps teams previously maintained duplicate logging stacks."
           ],
-          "tokens": 340,
-          "verified": true
+          "tokens": 340
         }
       ],
       "agentSynthesis": {
-        "verdict": "EXECUTIVE INTEL READY",
-        "badge": "✓ Exact ROI & Executive Quotes Extracted",
+        "badge": "✅ Exact ROI & Quotes Extracted",
         "description": "Agent parsed 1,050 tokens in 239ms and delivered exact executive evidence: 1) Contentful moved 9 TB/day logs from Splunk to Datadog Flex tier in 6 weeks (Michael Pearce, Sr Eng Mgr), 2) Lululemon reduced operational overhead by 30% and incident times by 40% (Ajay Chava). Instant battlecard ready for sales."
       }
     }
   },
-  "webset-soc2": {
-    "id": "webset-soc2",
-    "title": "SOC-2 Enterprise AI Startups",
-    "badge": "🏢 Webset Entity Extraction",
-    "query": "Enterprise AI agent startups with SOC2 Type II compliance trust center",
-    "objective": "Leverage Exa Websets and semantic entity extraction to compile a clean, audited directory of B2B AI agent companies with verified SOC 2 Type II trust portals.",
+  "crowdstrike-postmortem": {
+    "id": "crowdstrike-postmortem",
+    "title": "CrowdStrike Outage Root Cause",
+    "kicker": "Incident Engineering Analysis",
+    "query": "CrowdStrike Falcon sensor channel 291 logic error technical root cause architecture postmortem",
+    "objective": "Retrieve the exact kernel memory bounds crash mechanism and architecture findings from official technical postmortems rather than news soundbites.",
     "legacy": {
-      "latency": 3950,
-      "tokens": 46800,
-      "costPer100k": 14040,
+      "latency": 3650,
+      "tokens": 49100,
+      "costPer100k": 14730,
       "noiseRatio": 96,
-      "signalRatio": 4,
-      "adsCount": 2,
+      "adsCount": 3,
       "results": [
         {
           "type": "ad",
-          "title": "Ad · Vanta - Automated SOC 2 Compliance in Weeks",
-          "url": "https://www.google.com/aclk?sa=l&ai=DChcSEwj8...",
-          "snippet": "Get audit-ready fast. Automate 90% of your evidence collection for SOC 2, ISO 27001, and HIPAA. Book a demo today. $24.00 CPC auction.",
-          "badge": "Sponsored Ad · $24.00 CPC",
-          "tokens": 780
-        },
-        {
-          "type": "ad",
-          "title": "Ad · Secureframe - Continuous AI Compliance Platform",
-          "url": "https://www.google.com/aclk?sa=l&ai=DChcSEwj9...",
-          "snippet": "Fastest way to achieve enterprise SOC 2 compliance. Trusted by 2,000+ fast-growing startups. Free compliance checklist download.",
-          "badge": "Sponsored Ad · $19.50 CPC",
+          "badge": "Sponsored Ad · Antivirus Vendor",
+          "title": "SentinelOne - Endpoint Protection Built for Stability",
+          "snippet": "Avoid global kernel crashes. Switch to AI-native autonomous cybersecurity. Request a competitive migration quote. $22.50 CPC auction.",
+          "url": "https://www.google.com/aclk?sa=l&ai=DChcSEwj1...",
           "tokens": 820
         },
         {
-          "type": "seo",
-          "title": "What is SOC 2 Type II Compliance for AI Startups? (HubSpot)",
-          "url": "https://blog.hubspot.com/service/soc-2-compliance-guide",
-          "snippet": "Learn what SOC 2 compliance entails, why enterprise customers demand it, and the difference between Type I and Type II audits. 45KB marketing DOM...",
-          "badge": "Generic Educational Content",
-          "tokens": 21000
+          "type": "news",
+          "badge": "Mainstream News Clickbait",
+          "title": "CrowdStrike IT Outage: Flights grounded worldwide as blue screen of death hits",
+          "snippet": "Millions of Windows PCs crashed today causing chaos at airports, banks, and hospitals. Tech experts explain what happened and when systems will recover...",
+          "url": "https://www.cnn.com/2024/07/19/tech/crowdstrike-global-outage-flights/",
+          "tokens": 19400
         },
         {
-          "type": "gate",
-          "title": "2024 AI Security & Compliance Benchmark Report (Gated PDF)",
-          "url": "https://www.enterprisesecurityinsights.com/ai-benchmark-report/",
-          "snippet": "Enter your work email, company size, and phone number to unlock this 42-page whitepaper on AI startup security practices...",
-          "badge": "Lead Gate / Paywall Block",
-          "tokens": 24200
+          "type": "seo",
+          "badge": "Consumer Fix Listicle",
+          "title": "How to Fix the CrowdStrike Blue Screen Error (Step-by-Step Guide)",
+          "snippet": "Are you seeing stop code PAGE_FAULT_IN_NONPAGED_AREA? Follow these 5 steps to boot into Safe Mode and delete driver files...",
+          "url": "https://www.tomsguide.com/computing/how-to-fix-crowdstrike-bsod",
+          "tokens": 16200
+        },
+        {
+          "type": "forum",
+          "badge": "Unverified Social Media Speculation",
+          "title": "Twitter / X: Was CrowdStrike hacked? Speculation circulates online",
+          "snippet": "Viral posts claim cyberattack while CEO denies breach. See full discussion thread on X...",
+          "url": "https://twitter.com/cybersecurity_news/status/1814234/",
+          "tokens": 12680
         }
       ],
       "agentSynthesis": {
-        "verdict": "EXTRACTION IMPOSSIBLE",
-        "badge": "❌ 0 Entities Extracted",
-        "description": "Google returned compliance software vendors (Vanta, Secureframe) selling SOC 2 tools, plus educational blogs and gated lead forms. The agent could not extract a single AI agent startup with verified SOC 2 certification."
+        "badge": "❌ 0 Technical Root Causes Found",
+        "description": "Agent read 49,100 tokens of airport chaos news articles, consumer Safe Mode reboot tips, and Twitter speculation. Zero technical kernel memory mechanics or C++ driver findings extracted."
       }
     },
     "exa": {
-      "latency": 260,
+      "latency": 249,
       "tokens": 980,
       "costPer100k": 294,
-      "noiseRatio": 1,
       "signalRatio": 99,
-      "isWebset": true,
       "results": [
         {
-          "entityName": "Draft & Goal (dng.ai)",
-          "persona": "AI Governance & Safety Agents",
-          "soc2Status": "SOC 2 Type II Verified",
-          "deployment": "Multi-Cloud (US / EU)",
-          "url": "https://dng.ai/trust/",
+          "company": "CrowdStrike Engineering",
+          "date": "Official Postmortem",
+          "title": "External Technical Root Cause Analysis — Channel File 291",
+          "url": "https://www.crowdstrike.com/wp-content/uploads/2024/08/Channel-File-291-Incident-Root-Cause-Analysis-08.06.2024.pdf",
           "highlights": [
-            "Security, compliance, privacy, and responsible-AI practices — documented and audit-ready. SOC 2 Type II independently audited security controls, ISO 27001, and ISO 42001 certified.",
-            "Subprocessors vetted and listed: Google Cloud, Anthropic (Model inference), OpenAI, Cloudflare. Role-based access, least privilege, and full audit logging."
-          ]
+            "On July 19, 2024, two IPC Template Instances were deployed requiring inspection of the 21st input parameter. The Content Validator evaluated the Template Instances based on the expectation that the IPC Template Type would be provided with 21 inputs.",
+            "The Content Interpreter expected only 20 values. Therefore, the attempt to access the 21st value produced an out-of-bounds memory read beyond the end of the input pointer array, causing an immediate kernel panic crash."
+          ],
+          "tokens": 340
         },
         {
-          "entityName": "TierZero Enterprise (tierzero.ai)",
-          "persona": "Autonomous AI SRE Agents",
-          "soc2Status": "SOC 2 Type II + HIPAA",
-          "deployment": "On-Prem / VPC via Terraform",
-          "url": "https://www.tierzero.ai/enterprise/",
+          "company": "CSO Online / Architecture Analysis",
+          "date": "Technical Deep Dive",
+          "title": "Channel 291 Named Pipe IPC Evaluation Defect Analysis",
+          "url": "https://www.csoonline.com/article/2872861/crowdstrike-ceo-apologizes-details-fix.html",
           "highlights": [
-            "AI production agents built for critical infrastructure. SOC 2 Type II & HIPAA certified and audited for regulated industries. Annual third-party penetration testing.",
-            "Industry-first 95% accuracy SLA grounded in production telemetry. Optional zero-data retention mode where nothing is stored post-session."
-          ]
+            "Channel File 291 is stored in 'C:\\Windows\\System32\\drivers\\CrowdStrike\\' to evaluate named pipe execution used by C2 attack frameworks.",
+            "Defect was verified not as an arbitrary memory write, but a missing runtime array bounds check in the Content Interpreter when processing Rapid Response Content."
+          ],
+          "tokens": 320
         }
       ],
       "agentSynthesis": {
-        "verdict": "STRUCTURED WEBSET COMPILED",
-        "badge": "✓ 100% Machine-Parsed Entities",
-        "description": "Exa semantic filter instantly identified and structured 2 enterprise AI agent platforms with verified SOC 2 Type II trust centers, subprocessor transparency, and compliance documentation. Ready for CRM ingestion or security vetting."
+        "badge": "✅ Exact Kernel Defect Isolated",
+        "description": "Exa semantic search bypassed mainstream news fluff in 249ms and retrieved the exact official Root Cause Analysis: a 21-input vs 20-input array mismatch causing an out-of-bounds read in Channel File 291 Content Interpreter. Ready for SRE incident documentation."
       }
     }
   }
