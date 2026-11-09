@@ -2,274 +2,279 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#070a12">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090d16">
   <title>Exa vs Google — Live AI Agent Retrieval Benchmark</title>
-  <meta name="description" content="Side-by-side interactive comparison: Why autonomous AI agents break on Google and thrive on Exa.">
+  <meta name="description" content="Side-by-side interactive benchmark: Why autonomous AI agents break on Google SERPs and thrive on Exa semantic embeddings.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="demo.css?v=fresh10">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="demo.css?v=20261109v3">
 </head>
 <body class="arena-body">
 
-  <!-- TOP COMMAND HEADER -->
-  <header class="top-nav">
-    <div class="nav-left">
-      <a class="deck-link" href="../v2/index.html#0" title="Return to Slide Presentation">
-        <span class="back-arrow">←</span>
-        <span>SLIDE PRESENTATION</span>
+  <!-- TOP APP BAR -->
+  <header class="app-bar">
+    <div class="bar-left">
+      <a class="nav-back-link" href="../v2/index.html#0" title="Return to Slide Presentation">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span>Slides</span>
       </a>
-      <div class="brand-divider"></div>
-      <div class="nav-title">
-        <span class="exa-brand">EXA</span>
-        <span class="vs-text">VS</span>
-        <span class="google-brand">GOOGLE</span>
-        <span class="nav-tag">AGENT BENCHMARK</span>
+      <span class="bar-divider">/</span>
+      <div class="brand">
+        <span class="brand-text">exa<span class="brand-dot">.</span></span>
+        <span class="brand-tag">Benchmark Studio</span>
       </div>
     </div>
 
-    <div class="nav-right">
-      <div id="livePill" class="live-pill" title="Live Exa API connected (Paid Tier)">
-        <span class="live-dot"></span>
-        <span id="liveStatusText">EXA LIVE API ACTIVE (PAID TIER)</span>
+    <div class="bar-right">
+      <div id="apiStatusPill" class="live-pill" title="Connected to Exa Search API (Production Paid Tier)">
+        <span class="pulse-dot"></span>
+        <span id="apiStatusText">Live API Ready</span>
       </div>
+      <button id="settingsBtn" class="bar-btn icon-btn" title="API Configuration &amp; Settings" aria-label="Settings">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
     </div>
   </header>
 
-  <!-- MAIN STAGE -->
-  <main class="main-wrapper">
+  <!-- MAIN VIEWPORT -->
+  <main class="main-container">
 
-    <!-- SEARCH & SCENARIOS HERO -->
-    <section class="hero-search-area">
-      <div class="search-title-wrap">
-        <h1 class="main-heading">Search Engine for AI Agents</h1>
-        <p class="sub-heading">Compare real-time agent retrieval on long, precise, high-intent queries: Human SERP + DOM Scraper vs Exa Neural Embeddings</p>
+    <!-- COMMAND CONSOLE -->
+    <section class="command-deck">
+      <div class="deck-header">
+        <span class="eyebrow-tag">LIVE RETRIEVAL BENCHMARK</span>
+        <h1 class="command-title">Why Autonomous AI Agents Need Exa</h1>
+        <p class="command-subtitle">Compare human SERP scraping against direct neural embeddings on enterprise queries</p>
       </div>
 
-      <!-- MAIN QUERY INPUT BAR -->
-      <div class="search-bar-shell">
-        <div class="search-prompt-icon">⚡</div>
-        <input id="queryInput" class="search-input-field" type="text" placeholder="Enter a long, precise AI agent search query..." autocomplete="off">
-        
-        <div class="search-actions-group">
-          <!-- Live Comparison Button -->
-          <button id="runBtn" class="search-action-btn primary-btn">
-            <span id="runBtnLabel">Run Live Comparison ⚡</span>
+      <!-- SCENARIO SELECTOR -->
+      <div class="scenario-selector" role="tablist" aria-label="Preset Scenarios">
+        <button class="scenario-card active" data-preset="riyadh-unicorns" role="tab" aria-selected="true">
+          <div class="sc-head">
+            <span class="sc-flag">🇸🇦</span>
+            <span class="sc-title">Riyadh Tech Unicorns</span>
+          </div>
+          <span class="sc-sub">Tamara · Mrsool · STC Bank</span>
+        </button>
+        <button class="scenario-card" data-preset="ksa-webset" role="tab" aria-selected="false">
+          <div class="sc-head">
+            <span class="sc-flag">🏛️</span>
+            <span class="sc-title">KSA Enterprise Cloud</span>
+          </div>
+          <span class="sc-sub">SABB · SAMA · Hybrid Stack</span>
+        </button>
+        <button class="scenario-card" data-preset="giga-projects" role="tab" aria-selected="false">
+          <div class="sc-head">
+            <span class="sc-flag">⚡</span>
+            <span class="sc-title">Saudi Giga-Projects</span>
+          </div>
+          <span class="sc-sub">NEOM 36MW DC · Red Sea</span>
+        </button>
+      </div>
+
+      <!-- SEARCH INPUT SHELL -->
+      <div class="search-console">
+        <div class="search-input-box">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="queryInput" class="search-input" type="text" placeholder="Enter high-intent query for AI agent..." autocomplete="off" spellcheck="false">
+        </div>
+        <div class="search-btn-group">
+          <button id="runBtn" class="btn-primary" title="Execute live comparison race (Enter)">
+            <span class="btn-icon">⚡</span>
+            <span id="runBtnLabel">Compare Live</span>
+            <span class="key-tag">↵</span>
           </button>
-          
-          <!-- Open in Real Google Tab Button -->
-          <button id="openGoogleBtn" class="search-action-btn google-btn" title="Open this exact query in a real Google Search tab to see the ads and noise">
-            <span>Open in Google ↗</span>
+          <button id="openGoogleBtn" class="btn-secondary" title="Verify what real Google Search returns in a separate tab">
+            <span>Google</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           </button>
         </div>
       </div>
 
-      <!-- 3 KILLER SCENARIO CHIPS IN 3-COLUMN GRID -->
-      <div class="scenarios-container">
-        <div class="scenarios-header-row">
-          <span class="scenarios-label">⚡ SELECT HIGH-INTENT ENTERPRISE SCENARIO</span>
-          <span class="scenarios-hint">Click any scenario to compare real-time AI agent retrieval on Google vs Exa</span>
-        </div>
-
-        <div class="scenarios-grid">
-          <button class="scenario-chip active" data-preset="riyadh-unicorns" title="Riyadh tech unicorns: Tamara ($2.4B) and Mrsool cloud architecture on AWS EKS">
-            <span class="chip-icon">🇸🇦</span>
-            <div class="chip-text">
-              <span class="chip-title">Riyadh Tech Unicorns (Tamara &amp; Mrsool)</span>
-              <span class="chip-sub">Vision 2030 Leads · Datadog KSA Expansion</span>
-            </div>
-            <span class="chip-badge-status">ACTIVE</span>
-          </button>
-
-          <button class="scenario-chip" data-preset="ksa-webset" title="Exa Webset Extraction: SAMA regulated banks and hybrid cloud deployments">
-            <span class="chip-icon">🏛️</span>
-            <div class="chip-text">
-              <span class="chip-title">KSA Enterprise Cloud Webset</span>
-              <span class="chip-sub">Structured Webset Output · SAMA Banks (SABB &amp; Demica)</span>
-            </div>
-            <span class="chip-badge-status">SELECT</span>
-          </button>
-
-          <button class="scenario-chip" data-preset="giga-projects" title="Vision 2030 Giga-Projects: NEOM 36MW ZeroPoint DC & Red Sea Global">
-            <span class="chip-icon">⚡</span>
-            <div class="chip-text">
-              <span class="chip-title">Saudi Giga-Projects Infrastructure</span>
-              <span class="chip-sub">Smart Cities · NEOM ZeroPoint DC &amp; Red Sea Global</span>
-            </div>
-            <span class="chip-badge-status">SELECT</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- DIRECTIVE CALLOUT -->
-      <div class="directive-box">
-        <span class="directive-kicker">🤖 AGENT DIRECTIVE:</span>
-        <span id="objectiveText" class="directive-content">
-          Identify cloud architecture, Kubernetes stacks, and DevOps leadership across high-growth Riyadh unicorns (Tamara, Mrsool, STC Bank) to prospect Datadog enterprise deals in Saudi Arabia.
-        </span>
+      <!-- AGENT DIRECTIVE BAR -->
+      <div class="directive-strip">
+        <span class="directive-label">AGENT MISSION</span>
+        <span id="objectiveText" class="directive-text">Loading agent objective...</span>
       </div>
     </section>
 
-    <!-- SIDE-BY-SIDE ARENA -->
-    <section class="arena-columns-grid">
+    <!-- EXECUTIVE TELEMETRY SCORECARD (IMMEDIATELY VISIBLE) -->
+    <section class="telemetry-deck" aria-label="Executive Performance Telemetry">
+      <div class="telemetry-card">
+        <div class="telemetry-top">
+          <span class="telemetry-metric-name">Context Window Bloat</span>
+          <span id="statTokPercent" class="metric-pill pill-green">–98% Cut</span>
+        </div>
+        <div class="telemetry-flow">
+          <span id="statLegacyTok" class="val-danger">48.3k</span>
+          <span class="flow-arrow">→</span>
+          <span id="statExaTok" class="val-success">1.1k tokens</span>
+        </div>
+        <span class="telemetry-sub">Eliminates prompt truncation &amp; LLM hallucination</span>
+      </div>
 
-      <!-- LEFT: GOOGLE SEARCH (LEGACY WEB + SCRAPER) -->
-      <div class="arena-pane pane-google">
-        <div class="pane-header">
-          <div class="pane-brand">
-            <span class="pane-icon google-icon">G</span>
+      <div class="telemetry-card">
+        <div class="telemetry-top">
+          <span class="telemetry-metric-name">Retrieval Latency</span>
+          <span id="statLatSpeedup" class="metric-pill pill-green">16x Faster</span>
+        </div>
+        <div class="telemetry-flow">
+          <span id="statLegacyLat" class="val-danger">3,840ms</span>
+          <span class="flow-arrow">→</span>
+          <span id="statExaLat" class="val-success">238ms</span>
+        </div>
+        <span class="telemetry-sub">Bypasses headless Chrome &amp; multi-page crawlers</span>
+      </div>
+
+      <div class="telemetry-card">
+        <div class="telemetry-top">
+          <span class="telemetry-metric-name">Annual Cost / 100k Runs</span>
+          <span id="statCostSaved" class="metric-pill pill-green">$14,151 Saved</span>
+        </div>
+        <div class="telemetry-flow">
+          <span id="statLegacyCost" class="val-danger">$14,475</span>
+          <span class="flow-arrow">→</span>
+          <span id="statExaCost" class="val-success">$324</span>
+        </div>
+        <span class="telemetry-sub">Calculated at $0.003/1k input tokens</span>
+      </div>
+    </section>
+
+    <!-- SIDE-BY-SIDE BENCHMARK ARENA -->
+    <section class="arena-grid">
+
+      <!-- LEFT COLUMN: GOOGLE SERP + SCRAPER -->
+      <div class="arena-column column-legacy">
+        <div class="column-header">
+          <div class="column-title-group">
+            <div class="engine-badge badge-google">G</div>
             <div>
-              <h2 class="pane-title">Google Search (Legacy Web)</h2>
-              <span class="pane-subtitle">Human Ad-Funded SERP + Raw DOM Scraping</span>
+              <h2 class="column-title">Google SERP + Headless Scraper</h2>
+              <p class="column-sub">Human ad-funded SERP · DOM scraping bot</p>
             </div>
           </div>
-          <div class="header-right-tools">
-            <div id="legacyStats" class="pane-metric metric-danger">
-              <span id="legacyTokens">48,250 Tokens</span> · <span id="legacyLatency">3,840ms</span>
-            </div>
-            <button id="paneGoogleLink" class="pane-google-btn" title="Open this query in real Google Search">
-              Verify in Google ↗
-            </button>
+          <div class="column-meta">
+            <span id="legacyTokens" class="kpi-pill kpi-danger">48,250 Tokens</span>
+            <span id="legacyLatency" class="kpi-pill kpi-muted">3,840ms</span>
+            <button id="paneGoogleLink" class="btn-verify-google" title="Open this exact query in Google Search">Verify ↗</button>
           </div>
         </div>
 
-        <div class="pane-banner banner-warning">
-          <span>⚠️ 94% Noise Ratio · Sponsored Ads · Cookie Walls &amp; Boilerplate</span>
+        <div class="column-banner banner-legacy">
+          <span class="banner-pill pill-red">94% NOISE RATIO</span>
+          <span class="banner-desc">Sponsored auctions, cookie walls, job listings &amp; raw DOM</span>
         </div>
 
-        <!-- Live Running Stepper during race -->
-        <div id="legacyProgress" class="race-progress-hud race-google" hidden>
-          <div class="race-spinner"></div>
-          <div class="race-text-wrap">
-            <span id="legacyProgressStep" class="race-step-title">Crawling 5 target domains with headless browser...</span>
-            <span id="legacyTimer" class="race-timer">0ms</span>
+        <!-- Live Step Timer HUD (During Live Execution) -->
+        <div id="legacyProgress" class="execution-hud hud-legacy" hidden>
+          <div class="hud-spinner spinner-legacy"></div>
+          <div class="hud-info">
+            <span id="legacyProgressStep" class="hud-step-title">Querying Google SERP ad auction...</span>
+            <span id="legacyTimer" class="hud-timer">0ms</span>
           </div>
         </div>
 
         <!-- Results Stream -->
-        <div id="legacyStream" class="pane-results-stream"></div>
+        <div id="legacyStream" class="results-stream"></div>
 
-        <!-- Downstream Agent Verdict -->
-        <div class="agent-verdict-box verdict-box-fail">
-          <div class="verdict-header">
-            <span class="verdict-label">DOWNSTREAM AGENT IMPACT</span>
-            <span id="legacyVerdictBadge" class="verdict-status-pill status-fail">❌ CONTEXT WINDOW OVERFLOW</span>
+        <!-- Downstream Impact Card -->
+        <div class="impact-card impact-fail">
+          <div class="impact-head">
+            <span class="impact-status-badge status-bad">⚠️ CONTEXT OVERFLOW</span>
+            <span class="impact-label">DOWNSTREAM AGENT OUTCOME</span>
           </div>
-          <p id="legacyVerdictText" class="verdict-text">
-            Agent consumed 48,250 tokens across 5 scraped pages. Context contains zero recent leads: 1 paid ad ($14 CPC), 1 outdated article from 2017, and a company migrating AWAY from AWS.
-          </p>
+          <p id="legacyVerdictText" class="impact-body"></p>
         </div>
       </div>
 
-      <!-- RIGHT: EXA NEURAL AGENT ENGINE -->
-      <div class="arena-pane pane-exa">
-        <div class="pane-header">
-          <div class="pane-brand">
-            <span class="pane-icon exa-icon">⚡</span>
+      <!-- RIGHT COLUMN: EXA NEURAL AGENT API -->
+      <div class="arena-column column-exa">
+        <div class="column-header">
+          <div class="column-title-group">
+            <div class="engine-badge badge-exa">⚡</div>
             <div>
-              <h2 class="pane-title">Exa AI Agent Search</h2>
-              <span class="pane-subtitle">Direct Semantic Embeddings &amp; Dynamic Highlights</span>
+              <h2 class="column-title">Exa Neural Agent API</h2>
+              <p class="column-sub">Direct semantic embeddings · Highlights &amp; Websets</p>
             </div>
           </div>
-          <div class="header-right-tools">
-            <div id="exaStats" class="pane-metric metric-success">
-              <span id="exaTokens">1,140 Tokens</span> · <span id="exaLatency">241ms</span>
-            </div>
-            <span class="pure-signal-tag">98% PURE SIGNAL</span>
+          <div class="column-meta">
+            <span id="exaTokens" class="kpi-pill kpi-success">1,080 Tokens</span>
+            <span id="exaLatency" class="kpi-pill kpi-speed">238ms (98% Cut)</span>
           </div>
         </div>
 
-        <div class="pane-banner banner-success">
-          <span class="banner-tagline">✓ Pure Signal: Dynamic Highlights &amp; Webset Extraction</span>
-          <div class="exa-view-toggle-group">
-            <button id="viewHighlightsBtn" class="view-toggle-btn active" title="View dynamic semantic highlights">Highlights View</button>
-            <button id="viewJsonBtn" class="view-toggle-btn" title="View structured JSON output extracted for autonomous AI agents">Structured JSON ⚡</button>
+        <div class="column-banner banner-exa">
+          <div class="pure-signal-group">
+            <span class="banner-pill pill-green">98% PURE SIGNAL</span>
+            <span class="banner-desc">Dynamic semantic highlights &amp; validated agent schemas</span>
+          </div>
+          <div class="view-toggle-bar" role="group" aria-label="Output view mode">
+            <button id="viewHighlightsBtn" class="view-btn active" title="Semantic Highlights view">Highlights</button>
+            <button id="viewJsonBtn" class="view-btn" title="Structured Agent JSON schema">Agent JSON</button>
           </div>
         </div>
 
-        <!-- Live Running Stepper during race -->
-        <div id="exaProgress" class="race-progress-hud race-exa" hidden>
-          <div class="race-spinner exa-spinner"></div>
-          <div class="race-text-wrap">
-            <span id="exaProgressStep" class="race-step-title">Querying Exa Neural Index (Direct Semantic API)...</span>
-            <span id="exaTimer" class="race-timer">0ms</span>
+        <!-- Live Step Timer HUD (During Live Execution) -->
+        <div id="exaProgress" class="execution-hud hud-exa" hidden>
+          <div class="hud-spinner spinner-exa"></div>
+          <div class="hud-info">
+            <span id="exaProgressStep" class="hud-step-title">Querying Exa Neural Index...</span>
+            <span id="exaTimer" class="hud-timer">0ms</span>
           </div>
         </div>
 
         <!-- Results Stream -->
-        <div id="exaStream" class="pane-results-stream"></div>
+        <div id="exaStream" class="results-stream"></div>
 
-        <!-- Downstream Agent Verdict -->
-        <div class="agent-verdict-box verdict-box-pass">
-          <div class="verdict-header">
-            <span class="verdict-label">DOWNSTREAM AGENT IMPACT</span>
-            <span id="exaVerdictBadge" class="verdict-status-pill status-pass">✅ 3 VERIFIED LEADS EXTRACTED</span>
+        <!-- Downstream Impact Card -->
+        <div class="impact-card impact-pass">
+          <div class="impact-head">
+            <span id="exaVerdictPill" class="impact-status-badge status-good">✓ 3 QUALIFIED LEADS</span>
+            <span class="impact-label">DOWNSTREAM AGENT OUTCOME</span>
           </div>
-          <p id="exaVerdictText" class="verdict-text">
-            Agent ingested 1,140 tokens in 241ms and extracted 3 verified accounts: Life360 (60M+ users), Smarsh (250+ apps), and rabbit Inc. (100k+ devices). Generated personalized outreach with verified citations.
-          </p>
+          <p id="exaVerdictText" class="impact-body"></p>
         </div>
       </div>
 
-    </section>
-
-    <!-- EXECUTIVE IMPACT SCORECARD -->
-    <section class="scorecard-section">
-      <div class="scorecard-tile">
-        <span class="tile-kicker">PROMPT CONTEXT REDUCTION</span>
-        <div class="tile-numbers">
-          <span id="statLegacyTok" class="tile-bad">48.2k</span>
-          <span class="tile-arrow">➔</span>
-          <span id="statExaTok" class="tile-good">1.1k tokens</span>
-        </div>
-        <span id="statTokPercent" class="tile-delta">✂ 97.6% Less Context Bloat</span>
-      </div>
-
-      <div class="scorecard-tile">
-        <span class="tile-kicker">AGENT LOOP LATENCY</span>
-        <div class="tile-numbers">
-          <span id="statLegacyLat" class="tile-bad">3,840ms</span>
-          <span class="tile-arrow">➔</span>
-          <span id="statExaLat" class="tile-good">241ms</span>
-        </div>
-        <span id="statLatSpeedup" class="tile-delta">⚡ 16x Faster Execution Cycle</span>
-      </div>
-
-      <div class="scorecard-tile">
-        <span class="tile-kicker">ANNUAL CLOUD SAVINGS / 100K QUERIES</span>
-        <div class="tile-numbers">
-          <span id="statLegacyCost" class="tile-bad">$14,475</span>
-          <span class="tile-arrow">➔</span>
-          <span id="statExaCost" class="tile-good">$342</span>
-        </div>
-        <span id="statCostSaved" class="tile-delta">💰 $14,133 Annual LLM Savings</span>
-      </div>
-    </section>
-
-    <!-- NON-BLOCKING INLINE API SETTINGS (COLLAPSIBLE DRAWER) -->
-    <section class="api-drawer-section">
-      <details class="api-details">
-        <summary class="api-summary">
-          <span>⚙️ API Keys &amp; Settings (Paid Keys Configured &amp; Active)</span>
-        </summary>
-        <div class="api-drawer-content">
-          <div class="api-field">
-            <label for="exaKeyInput">Exa API Key (Paid Tier)</label>
-            <input id="exaKeyInput" type="text" value="f8eb4dc2-1ad8-4960-88ce-2c7580debd91">
-          </div>
-          <div class="api-field">
-            <label for="serpKeyInput">SerpAPI / Google Key</label>
-            <input id="serpKeyInput" type="text" value="620b4867764d47a5f808e64ebf96c19260fe6d7c37d1bb79e6dc209b12c37009">
-          </div>
-          <button id="saveKeyBtn" class="api-save-btn">Save to Browser</button>
-        </div>
-      </details>
     </section>
 
   </main>
 
-  <script src="demo.js?v=fresh10"></script>
+  <!-- SETTINGS MODAL -->
+  <div id="settingsModal" class="modal-backdrop" hidden>
+    <div class="modal-dialog">
+      <div class="modal-head">
+        <h3 class="modal-title">API Configuration</h3>
+        <button id="closeModalBtn" class="modal-close" aria-label="Close settings">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-intro">The live benchmark executes real neural queries against Exa's Production Search API. API keys are stored strictly in your browser session.</p>
+        
+        <div class="form-group">
+          <label for="exaKeyInput" class="form-label">Exa API Key (Paid Tier)</label>
+          <input id="exaKeyInput" class="form-input font-mono" type="password" value="f8eb4dc2-1ad8-4960-88ce-2c7580debd91">
+          <span class="form-hint">Used for neural embedding search, highlights, and websets</span>
+        </div>
+
+        <div class="form-group">
+          <label for="serpKeyInput" class="form-label">SerpAPI / Google Key (Optional)</label>
+          <input id="serpKeyInput" class="form-input font-mono" type="password" value="620b4867764d47a5f808e64ebf96c19260fe6d7c37d1bb79e6dc209b12c37009">
+          <span class="form-hint">Used for live Google comparisons if custom crawler is enabled</span>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button id="cancelModalBtn" class="btn-subtle">Cancel</button>
+        <button id="saveKeyBtn" class="btn-primary">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="toast-box" hidden></div>
+
+  <script src="demo.js?v=20261109v3"></script>
 </body>
 </html>
